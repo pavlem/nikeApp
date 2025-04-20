@@ -18,7 +18,9 @@ struct ProductsView: View {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(viewModel.products) { product in
                     NavigationLink {
-                        ProductDetailsView(product: product)
+                        
+                        ProductDetailsView(viewModel: ProductDetailsViewModelImpl(product: product))
+                        
                     } label: {
                         ProductGridCell(product: product)
                     }

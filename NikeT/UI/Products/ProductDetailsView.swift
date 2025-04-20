@@ -11,26 +11,27 @@ import SwiftData
 @MainActor
 struct ProductDetailsView: View {
     
-    let product: Product
+    @StateObject var viewModel: ProductDetailsViewModelImpl
     
-    @State private var isZoomPresented = false
     @Environment(\.modelContext) private var modelContext
     @Query private var cartItems: [CartItem]
-
+    
     private var isInCart: Bool {
-        if cartItems.first(where: { $0.id == product.id }) != nil {
+        if viewModel.isInCart(cartItems: cartItems) {
             return true
-        } else {
-            return false
         }
+        return false
     }
-
+    
     var body: some View {
         ScrollView {
+            
             VStack(alignment: .leading, spacing: 16) {
-                if let url = product.imageURL {
+                
+                if let url = viewModel.imageURL {
+                    
                     Button {
-                        isZoomPresented = true
+                        viewModel.isZoomPresented = true
                     } label: {
                         AsyncImage(url: url) { image in
                             image
@@ -40,64 +41,58 @@ struct ProductDetailsView: View {
                             Color.gray.opacity(0.3)
                         }
                     }
-                    .fullScreenCover(isPresented: $isZoomPresented) {
+                    .fullScreenCover(isPresented: $viewModel.isZoomPresented) {
                         ZoomableImageView(imageURL: url)
                     }
                 }
-
-                Text(product.title)
+                
+                Text(viewModel.productTitle)
                     .font(.title)
                     .bold()
-
+                
                 HStack(spacing: 16) {
                     
-                    Text(String(format: "$%.2f", product.price))
+                    Text(viewModel.priceText)
                         .font(.title2)
                     
                     Spacer()
                     
                     Button(action: {
-                        
-                        
-                        if let existing = cartItems.first(where: { $0.id == product.id }) {
+                        if let existing = viewModel.existingCartItem(cartItems: cartItems) {
                             modelContext.delete(existing)
-//                            print("Cart items in DB:", cartItems.map(\.id))
-
                         } else {
-                            modelContext.insert(CartItem(product: product))
-//                            print("Cart items in DB:", cartItems.map(\.id))
-
+                            modelContext.insert(CartItem(product: viewModel.product))
                         }
                         
-
+                        print("Cart items in DB:", cartItems.map(\.id))
                         
-
                     }) {
-                        Text(isInCart ? "Remove from Cart" : "Add to Cart")
+                        Text(viewModel.buttonTitle(cartItems: cartItems))
                             .font(.headline)
                             .padding(.horizontal)
                             .padding(.vertical, 8)
-                            .background(isInCart ? Color.red : Color.blue)
+                            .background(viewModel.buttonColor(cartItems: cartItems))
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
                 }
-
+                
                 HStack(spacing: 4) {
                     ForEach(1...5, id: \.self) { index in
-                        Image(systemName: index <= Int(round(product.rating.rate)) ? "star.fill" : "star")
+                        
+                        Image(systemName: viewModel.imageName(forIndex: index))
                             .foregroundColor(.yellow)
                     }
-                    Text("(\(product.rating.count))")
+                    Text(viewModel.ratingCountText)
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
-
-                Text("Category: \(product.category)")
+                
+                Text(viewModel.categoryText)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
-
-                Text(product.description)
+                
+                Text(viewModel.descriptionText)
                     .font(.body)
             }
             .padding()

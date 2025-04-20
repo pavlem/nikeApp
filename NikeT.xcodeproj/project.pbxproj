@@ -18,6 +18,12 @@
 		6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F52DB4E56A000F2F0E /* LoadingViewModifier.swift */; };
 		6024C2F72DB4E56A000F2F0E /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F42DB4E56A000F2F0E /* DebugPrint.swift */; };
 		6024C2FA2DB4E58A000F2F0E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F92DB4E58A000F2F0E /* API.swift */; };
+		6024C3002DB4E783000F2F0E /* ProductsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */; };
+		6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3012DB4E7EC000F2F0E /* Route.swift */; };
+		6024C3042DB4E841000F2F0E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3032DB4E841000F2F0E /* RequestBuilder.swift */; };
+		6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3052DB4E868000F2F0E /* CommsSession.swift */; };
+		6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */; };
+		6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */; };
 		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
 		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
 		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
@@ -54,6 +60,12 @@
 		6024C2F42DB4E56A000F2F0E /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
 		6024C2F52DB4E56A000F2F0E /* LoadingViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModifier.swift; sourceTree = "<group>"; };
 		6024C2F92DB4E58A000F2F0E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsUseCase.swift; sourceTree = "<group>"; };
+		6024C3012DB4E7EC000F2F0E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		6024C3032DB4E841000F2F0E /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		6024C3052DB4E868000F2F0E /* CommsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSession.swift; sourceTree = "<group>"; };
+		6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPI.swift; sourceTree = "<group>"; };
+		6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDTO.swift; sourceTree = "<group>"; };
 		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +104,6 @@
 		6024C2D92DB4E41E000F2F0E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6024C2DE2DB4E492000F2F0E /* Components */,
 				6024C2E32DB4E4CC000F2F0E /* Products */,
 				6024C2DB2DB4E432000F2F0E /* Cart */,
 			);
@@ -102,6 +113,8 @@
 		6024C2DA2DB4E423000F2F0E /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				6024C2FD2DB4E76F000F2F0E /* UseCases */,
+				6024C2FE2DB4E76F000F2F0E /* Comms */,
 				6024C2F82DB4E585000F2F0E /* APIs */,
 				6024C2F32DB4E556000F2F0E /* Utils */,
 				6024C2F02DB4E549000F2F0E /* Factories */,
@@ -118,13 +131,6 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
-		6024C2DE2DB4E492000F2F0E /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		6024C2E32DB4E4CC000F2F0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,18 +144,19 @@
 		6024C2EA2DB4E52D000F2F0E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				6024C2EB2DB4E535000F2F0E /* ResponseObjects */,
+				6024C2EB2DB4E535000F2F0E /* Responses */,
 				6024C2EE2DB4E540000F2F0E /* Product.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		6024C2EB2DB4E535000F2F0E /* ResponseObjects */ = {
+		6024C2EB2DB4E535000F2F0E /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				6024C2EC2DB4E53B000F2F0E /* ProductDTO.swift */,
+				6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */,
 			);
-			path = ResponseObjects;
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		6024C2F02DB4E549000F2F0E /* Factories */ = {
@@ -173,8 +180,27 @@
 			isa = PBXGroup;
 			children = (
 				6024C2F92DB4E58A000F2F0E /* API.swift */,
+				6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */,
+				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
 			);
 			path = APIs;
+			sourceTree = "<group>";
+		};
+		6024C2FD2DB4E76F000F2F0E /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		6024C2FE2DB4E76F000F2F0E /* Comms */ = {
+			isa = PBXGroup;
+			children = (
+				6024C3012DB4E7EC000F2F0E /* Route.swift */,
+				6024C3032DB4E841000F2F0E /* RequestBuilder.swift */,
+			);
+			path = Comms;
 			sourceTree = "<group>";
 		};
 		6025708C2DB4E376007C8672 = {
@@ -370,14 +396,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */,
+				6024C3042DB4E841000F2F0E /* RequestBuilder.swift in Sources */,
 				6024C2DD2DB4E438000F2F0E /* CartView.swift in Sources */,
 				6024C2E72DB4E4D8000F2F0E /* ProductDetailsView.swift in Sources */,
+				6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */,
 				6024C2F22DB4E54E000F2F0E /* DependencyManager.swift in Sources */,
 				6024C2EF2DB4E540000F2F0E /* Product.swift in Sources */,
 				6024C2E82DB4E4D8000F2F0E /* ProductCell.swift in Sources */,
+				6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */,
+				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,
 				6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */,
 				6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */,
 				6024C2F72DB4E56A000F2F0E /* DebugPrint.swift in Sources */,
+				6024C3002DB4E783000F2F0E /* ProductsUseCase.swift in Sources */,
 				6024C2FA2DB4E58A000F2F0E /* API.swift in Sources */,
 				6024C2E92DB4E4D8000F2F0E /* ProductsView.swift in Sources */,
 				602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */,

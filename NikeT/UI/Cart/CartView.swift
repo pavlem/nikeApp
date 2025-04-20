@@ -59,19 +59,11 @@ struct CartView: View {
             .navigationTitle(Constants.navigationTitle)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    Button(action: {
-                        viewModel.checkout(cartItems: cartItems)
-                    }) {
-                        Text(Constants.checkOutText)
-                            .font(.headline)
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
-                            .background(cartItems.isEmpty ? Color.gray : Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                    .disabled(cartItems.isEmpty)
+                    CheckoutButton(
+                        title: Constants.checkOutText,
+                        isDisabled: cartItems.isEmpty,
+                        action: { viewModel.checkout(cartItems: cartItems) }
+                    )
                 }
             }
         }
@@ -84,6 +76,26 @@ extension CartView {
         static var removeImageName: String { "trash" }
         static var checkOutText: String { "Checkout" }
         static var navigationTitle: String { "Cart" }
+    }
+}
 
+struct CheckoutButton: View {
+    
+    let title: String
+    let isDisabled: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+                .background(isDisabled ? Color.gray : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .disabled(isDisabled)
     }
 }

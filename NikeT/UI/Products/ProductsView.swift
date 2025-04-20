@@ -15,7 +15,7 @@ struct ProductsView: View {
     var body: some View {
         
         ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Constants.gridSpacing) {
                 ForEach(viewModel.products) { product in
                     NavigationLink {
                         
@@ -56,5 +56,7 @@ extension ProductsView {
         static var navigationTitle: LocalizedStringKey { "Products" }
         static var errorTitleText: LocalizedStringKey { "Error" }
         static var okText: LocalizedStringKey { "Ok" }
+        
+        static var gridSpacing: CGFloat = 16
     }
 }

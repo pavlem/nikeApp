@@ -52,7 +52,7 @@ class ProductsViewModelImpl: ProductsViewModel {
         do {
             products = try await useCase.fetchProducts()
         } catch {
-            self.error = .testError // Replace with appropriate error handling
+            self.error = .testError
         }
     }
     

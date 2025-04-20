@@ -7,12 +7,19 @@
 
 import Foundation
 
-protocol CheckOutAPI {
-    func checkOut() async throws -> VoidDTO
-}
-
 protocol ProductsAPI {
     func fetchProducts() async throws -> [ProductDTO]
+}
+
+class ProductsMockAPIImpl: API, ProductsAPI {
+    func fetchProducts() async throws -> [ProductDTO] {
+        guard let url = Bundle.main.url(forResource: "products", withExtension: "json") else {
+            throw NSError(domain: "ProductsAPI", code: 0, userInfo: [NSLocalizedDescriptionKey: "Mock products.json not found"])
+        }
+        let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        return try decoder.decode([ProductDTO].self, from: data)
+    }
 }
 
 class ProductsAPIImpl: API, ProductsAPI {

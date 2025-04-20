@@ -24,6 +24,7 @@
 		6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3052DB4E868000F2F0E /* CommsSession.swift */; };
 		6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */; };
 		6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */; };
+		6024C30C2DB4EAFA000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */; };
 		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
 		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
 		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
@@ -66,6 +67,7 @@
 		6024C3052DB4E868000F2F0E /* CommsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSession.swift; sourceTree = "<group>"; };
 		6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPI.swift; sourceTree = "<group>"; };
 		6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDTO.swift; sourceTree = "<group>"; };
+		6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
 		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,14 @@
 		602570C92DB4E3A6007C8672 /* NikeTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTUITests.swift; sourceTree = "<group>"; };
 		602570CA2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6024C30D2DB4EBD9000F2F0E /* JsonFiles */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = JsonFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		602570922DB4E376007C8672 /* Frameworks */ = {
@@ -181,6 +191,7 @@
 			children = (
 				6024C2F92DB4E58A000F2F0E /* API.swift */,
 				6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */,
+				6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */,
 				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
 			);
 			path = APIs;
@@ -255,6 +266,7 @@
 		602570CE2DB4E3AC007C8672 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6024C30D2DB4EBD9000F2F0E /* JsonFiles */,
 				602570BF2DB4E3A0007C8672 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -274,6 +286,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6024C30D2DB4EBD9000F2F0E /* JsonFiles */,
 			);
 			name = NikeT;
 			packageProductDependencies = (
@@ -406,6 +421,7 @@
 				6024C2E82DB4E4D8000F2F0E /* ProductCell.swift in Sources */,
 				6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */,
 				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,
+				6024C30C2DB4EAFA000F2F0E /* CheckoutAPI.swift in Sources */,
 				6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */,
 				6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */,
 				6024C2F72DB4E56A000F2F0E /* DebugPrint.swift in Sources */,

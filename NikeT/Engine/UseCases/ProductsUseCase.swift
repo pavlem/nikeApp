@@ -22,7 +22,7 @@ class ProductsUseCaseImpl: ProductsUseCase {
     func fetchProducts() async throws -> [Product] {
         
         let productsDTOs = try await api.fetchProducts()
-        try await Task.sleep(nanoseconds: 500_000_000) // 0.5 s delay
+//        try await Task.sleep(nanoseconds: 500_000_000) // 0.5 s delay
         return productsDTOs.map { Product(dto: $0) }
         
 //        let productsDTOs = try await productsAPI.getProducts()

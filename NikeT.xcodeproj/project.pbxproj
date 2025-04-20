@@ -132,6 +132,7 @@
 		6024C2D92DB4E41E000F2F0E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6024C2E12DB4E4B7000F2F0E /* MainTabView.swift */,
 				6024C3482DB50EB9000F2F0E /* Components */,
 				6024C2E32DB4E4CC000F2F0E /* Products */,
 				6024C2DB2DB4E432000F2F0E /* Cart */,
@@ -148,6 +149,7 @@
 				6024C2F32DB4E556000F2F0E /* Utils */,
 				6024C2F02DB4E549000F2F0E /* Factories */,
 				6024C2EA2DB4E52D000F2F0E /* Data */,
+				602570C12DB4E3A0007C8672 /* NikeTApp.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -272,8 +274,6 @@
 		602570C22DB4E3A0007C8672 /* NikeT */ = {
 			isa = PBXGroup;
 			children = (
-				602570C12DB4E3A0007C8672 /* NikeTApp.swift */,
-				6024C2E12DB4E4B7000F2F0E /* MainTabView.swift */,
 				6024C2DA2DB4E423000F2F0E /* Engine */,
 				6024C2D92DB4E41E000F2F0E /* UI */,
 				602570CE2DB4E3AC007C8672 /* Resources */,

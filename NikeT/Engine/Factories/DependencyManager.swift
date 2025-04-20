@@ -30,7 +30,7 @@ extension DependencyManager {
     func makeCartViewModel() -> CartViewModelImpl {
         let session = CommsSessionImpl()
 
-        return CartViewModelImpl(cartUseCase: CartUseCaseImpl(checkoutAPI: CheckoutAPIImpl(session: session)))
+        return CartViewModelImpl(cartUseCase: CartUseCaseImpl(api: CheckoutAPIImpl(session: session)))
     }
     
 }

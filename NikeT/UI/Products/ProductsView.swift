@@ -11,7 +11,7 @@ struct ProductsView: View {
     
     @StateObject var viewModel: ProductsViewModelImpl
     @Environment(\.isLoading) private var isLoading: Binding<Bool>
-  
+    
     private let dependencyManager: DependencyManager = DependencyManager.shared
     
     var body: some View {
@@ -59,7 +59,6 @@ extension ProductsView {
         static var navigationTitle: LocalizedStringKey { "Products" }
         static var errorTitleText: LocalizedStringKey { "Error" }
         static var okText: LocalizedStringKey { "Ok" }
-        
         static var gridSpacing: CGFloat = 16
     }
 }

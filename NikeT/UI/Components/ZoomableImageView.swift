@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ZoomableImageView: View {
+    
     let imageURL: URL
+    
     @Environment(\.dismiss) private var dismiss
-
     @State private var zoomScale: CGFloat = 1.0
-
+    
     var body: some View {
+        
         ZStack(alignment: .topTrailing) {
+            
             Color.black.ignoresSafeArea()
             
             VStack {
-                
                 HStack {
                     Spacer()
                     
@@ -33,6 +35,7 @@ struct ZoomableImageView: View {
                 }
                 
                 GeometryReader { geometry in
+                   
                     ScrollView(zoomScale > 1 ? [.horizontal, .vertical] : [], showsIndicators: false) {
                         AsyncImage(url: imageURL) { image in
                             image

@@ -23,7 +23,6 @@
 		6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3052DB4E868000F2F0E /* CommsSession.swift */; };
 		6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */; };
 		6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */; };
-		6024C30C2DB4EAFA000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */; };
 		6024C3412DB4F528000F2F0E /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */; };
 		6024C3432DB4FC79000F2F0E /* ProductGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */; };
 		6024C3452DB50E18000F2F0E /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3442DB50E18000F2F0E /* CartItem.swift */; };
@@ -32,6 +31,8 @@
 		6024C34E2DB5763C000F2F0E /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C34D2DB5763C000F2F0E /* CheckoutButton.swift */; };
 		6024C3502DB58051000F2F0E /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C34F2DB58051000F2F0E /* CartItemCell.swift */; };
 		6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3512DB58092000F2F0E /* CartViewModel.swift */; };
+		6024C3542DB5921C000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */; };
+		6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3552DB5924B000F2F0E /* CartUseCase.swift */; };
 		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
 		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
 		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
@@ -73,7 +74,6 @@
 		6024C3052DB4E868000F2F0E /* CommsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSession.swift; sourceTree = "<group>"; };
 		6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPI.swift; sourceTree = "<group>"; };
 		6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDTO.swift; sourceTree = "<group>"; };
-		6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
 		6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridCell.swift; sourceTree = "<group>"; };
 		6024C3442DB50E18000F2F0E /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
@@ -82,6 +82,8 @@
 		6024C34D2DB5763C000F2F0E /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
 		6024C34F2DB58051000F2F0E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		6024C3512DB58092000F2F0E /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
+		6024C3552DB5924B000F2F0E /* CartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUseCase.swift; sourceTree = "<group>"; };
 		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,7 +213,7 @@
 			children = (
 				6024C2F92DB4E58A000F2F0E /* API.swift */,
 				6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */,
-				6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */,
+				6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */,
 				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
 			);
 			path = APIs;
@@ -220,6 +222,7 @@
 		6024C2FD2DB4E76F000F2F0E /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				6024C3552DB5924B000F2F0E /* CartUseCase.swift */,
 				6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */,
 			);
 			path = UseCases;
@@ -453,7 +456,7 @@
 				6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */,
 				6024C34A2DB517BD000F2F0E /* ProductDetailsViewModel.swift in Sources */,
 				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,
-				6024C30C2DB4EAFA000F2F0E /* CheckoutAPI.swift in Sources */,
+				6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */,
 				6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */,
 				6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */,
 				6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */,
@@ -461,6 +464,7 @@
 				6024C34E2DB5763C000F2F0E /* CheckoutButton.swift in Sources */,
 				6024C3002DB4E783000F2F0E /* ProductsUseCase.swift in Sources */,
 				6024C3472DB50EA0000F2F0E /* ZoomableImageView.swift in Sources */,
+				6024C3542DB5921C000F2F0E /* CheckoutAPI.swift in Sources */,
 				6024C2FA2DB4E58A000F2F0E /* API.swift in Sources */,
 				6024C2E92DB4E4D8000F2F0E /* ProductsView.swift in Sources */,
 				602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */,

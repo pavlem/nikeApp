@@ -7,17 +7,28 @@
 
 import SwiftUI
 
+protocol ProductDetailsUseCase {
+    
+}
+
+class ProductDetailsUseCaseImpl: ProductDetailsUseCase {
+    
+}
+
+
+
+
+
 protocol ProductDetailsViewModel: ObservableObject {
     var isZoomPresented: Bool { get set }
-    var product: Product { get }
     var categoryText: String { get }
     var descriptionText: String { get }
     var imageURL: URL? { get }
     var priceText: String { get }
     var productTitle: String { get }
-    
     var ratingCountText: String { get }
     var ratingStars: [Bool] { get }
+    var product: Product { get }
     
     func existingCartItem(cartItems: [CartItem]) -> CartItem?
     func isInCart(cartItems: [CartItem]) -> Bool
@@ -31,16 +42,15 @@ class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
     
     @Published var isZoomPresented = false
     
-    private(set) var product: Product
-    
-    var categoryText: String {
-        "\(Constants.categoryText)" + ": " + product.category
-    }
-    
+    var categoryText: String { "\(Constants.categoryText)" + ": " + product.category }
     var descriptionText: String { product.description }
     var imageURL: URL? { product.imageURL }
     var priceText: String { String(format: "$%.2f", product.price) }
     var productTitle: String { product.title }
+    var ratingCountText: String { "(\(product.rating.count))" }
+    var ratingStars: [Bool] { (1...5).map { $0 <= Int(round(product.rating.rate)) }}
+    
+    private(set) var product: Product
     
     func existingCartItem(cartItems: [CartItem]) -> CartItem? {
         return cartItems.first(where: { $0.id == product.id })
@@ -56,14 +66,6 @@ class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
     
     func buttonTitle(cartItems: [CartItem]) -> String {
         cartItems.contains { $0.id == product.id } ? "Remove from Cart" : "Add to Cart"
-    }
-    
-    var ratingCountText: String {
-        "(\(product.rating.count))"
-    }
-    
-    var ratingStars: [Bool] {
-        (1...5).map { $0 <= Int(round(product.rating.rate)) }
     }
     
     func buttonColor(cartItems: [CartItem]) -> Color {

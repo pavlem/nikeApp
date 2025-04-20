@@ -63,5 +63,4 @@ class ProductsViewModelImpl: ProductsViewModel {
     func reloadProducts() async {
         await fetchProducts()
     }
-    
 }

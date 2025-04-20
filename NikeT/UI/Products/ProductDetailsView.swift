@@ -58,13 +58,12 @@ struct ProductDetailsView: View {
                     Spacer()
                     
                     Button(action: {
+                        
                         if let existing = viewModel.existingCartItem(cartItems: cartItems) {
                             modelContext.delete(existing)
                         } else {
                             modelContext.insert(CartItem(product: viewModel.product))
                         }
-                        
-                        print("Cart items in DB:", cartItems.map(\.id))
                         
                     }) {
                         Text(viewModel.buttonTitle(cartItems: cartItems))

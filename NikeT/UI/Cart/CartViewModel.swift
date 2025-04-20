@@ -8,64 +8,6 @@
 import SwiftUI
 import SwiftData
 
-enum APIError: Error {
-    case networkError
-    case timeout
-    case invalidURL
-}
-
-protocol CheckoutAPI {
-    func checkout(cartItems: [CartItem]) async throws -> VoidDTO
-}
-
-class CheckoutAPIImpl: API, CheckoutAPI {
-   
-    func checkout(cartItems: [CartItem]) async throws -> VoidDTO {
-        
-        let pollingURL = URL(string: "https://httpbin.org/delay/5")!
-        let maxWaitTime: TimeInterval = 10
-        let pollInterval: TimeInterval = 3
-        let startTime = Date()
-
-        while Date().timeIntervalSince(startTime) < maxWaitTime {
-            print("Polling...")
-
-            var request = URLRequest(url: pollingURL)
-            request.timeoutInterval = pollInterval  // ⏱️ this is the key
-
-            do {
-                let (data, response) = try await URLSession.shared.data(for: request)
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                    return VoidDTO()
-                }
-            } catch {
-                print("Polling attempt failed or timed out")
-//                print("Polling attempt failed or timed out: \(error)")
-            }
-
-            try await Task.sleep(nanoseconds: UInt64(pollInterval * 1_000_000_000))
-        }
-
-        throw APIError.timeout
-    }
-}
-
-protocol CartUseCase {
-    func checkout(cartItems: [CartItem]) async throws
-}
-
-class CartUseCaseImpl: CartUseCase {
-    private let checkoutAPI: CheckoutAPI
-
-    init(checkoutAPI: CheckoutAPI) {
-        self.checkoutAPI = checkoutAPI
-    }
-
-    func checkout(cartItems: [CartItem]) async throws {
-        let _ = try await checkoutAPI.checkout(cartItems: cartItems)
-    }
-}
-
 enum CheckoutAlert: Identifiable {
     case checkoutSuccess
     case error(String) // Includes an error message
@@ -83,6 +25,7 @@ enum CheckoutAlert: Identifiable {
 enum CheckoutError: LocalizedError {
     case testError
     case networkError(Error)
+    case checkoutFailed
     
     var errorDescription: String? {
         switch self {
@@ -90,6 +33,8 @@ enum CheckoutError: LocalizedError {
             return "This is a test error."
         case .networkError(let err):
             return err.localizedDescription
+        case .checkoutFailed:
+            return "Checkout failed. Please try again later."
         }
     }
 }
@@ -106,14 +51,12 @@ class CartViewModelImpl: ObservableObject {
 
     private let cartUseCase: CartUseCase
     
-//    @Published var error: CheckoutError?
-
     init(cartUseCase: CartUseCase) {
         self.cartUseCase = cartUseCase
     }
     
     func remove(item: CartItem, from context: ModelContext) {
-        context.delete(item)
+        cartUseCase.remove(item: item, from: context)
     }
     
     @MainActor
@@ -132,7 +75,7 @@ class CartViewModelImpl: ObservableObject {
             self.alert = .checkoutSuccess
 
         } catch {
-            let err = CheckoutError.networkError(error)
+            let err = CheckoutError.checkoutFailed
             self.alert = .error(err.errorDescription ?? "-")
         }
     }

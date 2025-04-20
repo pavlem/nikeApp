@@ -8,7 +8,7 @@
 import SwiftUI
 
 // The button itself is already self-contained, and adding a ViewModel would only add unnecessary complexity.
-// In general, a ViewModel is used in our app when you need to manage state, data fetching, or complex business logic.
+// In general, we should use ViewModel is an app when you there is a need to manage state, data fetching, or complex business logic.
 
 struct CheckoutButton: View {
     

@@ -10,7 +10,7 @@ import SwiftUI
 struct ProductGridCell: View {
     
     let product: Product // we can also introduce a ViewModel here, but it's a simple View and there is no need.
-
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: Constants.vSpacing) {
@@ -25,14 +25,14 @@ struct ProductGridCell: View {
             .frame(maxWidth: .infinity)
             .aspectRatio(1, contentMode: .fit)
             .cornerRadius(Constants.imageCornerRadius)
-
+            
             Text(product.title)
                 .font(.headline)
                 .lineLimit(Constants.titleLineLimit)
-
+            
             Text(String(format: "$%.2f", product.price))
                 .font(.subheadline)
-
+            
             Text(product.category)
                 .font(.caption)
                 .foregroundColor(.secondary)

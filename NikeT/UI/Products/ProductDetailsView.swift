@@ -6,11 +6,31 @@
 //
 
 import SwiftUI
+import SwiftData
+
+@Model
+final class CartItem {
+    var id: Int
+    var title: String
+    var price: Double
+
+    init(id: Int, title: String, price: Double) {
+        self.id = id
+        self.title = title
+        self.price = price
+    }
+}
 
 struct ProductDetailsView: View {
     let product: Product
     @State private var isZoomPresented = false
-    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var cartItems: [CartItem]
+
+    private var isInCart: Bool {
+        cartItems.contains { $0.id == product.id }
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -70,6 +90,25 @@ struct ProductDetailsView: View {
 
                 Text(product.description)
                     .font(.body)
+
+                Button(action: {
+                    if isInCart {
+                        if let item = cartItems.first(where: { $0.id == product.id }) {
+                            modelContext.delete(item)
+                        }
+                    } else {
+                        let item = CartItem(id: product.id, title: product.title, price: product.price)
+                        modelContext.insert(item)
+                    }
+                }) {
+                    Text(isInCart ? "Remove from Cart" : "Add to Cart")
+                        .font(.headline)
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(isInCart ? Color.red : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
             }
             .padding()
         }
@@ -129,8 +168,6 @@ struct ZoomableImageView: View {
                     }
                 }
             }
-
-
         }
     }
 }

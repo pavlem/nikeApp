@@ -77,35 +77,44 @@ struct ZoomableImageView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Color.black.ignoresSafeArea()
-
-            GeometryReader { geometry in
-                ScrollView(zoomScale > 1 ? [.horizontal, .vertical] : [], showsIndicators: false) {
-                    AsyncImage(url: imageURL) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(
-                                width: geometry.size.width * zoomScale
-                            )
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    zoomScale = zoomScale == 1.0 ? 2.0 : 1.0
+            
+            VStack {
+                
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .padding()
+                    }
+                }
+                
+                GeometryReader { geometry in
+                    ScrollView(zoomScale > 1 ? [.horizontal, .vertical] : [], showsIndicators: false) {
+                        AsyncImage(url: imageURL) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(
+                                    width: geometry.size.width * zoomScale
+                                )
+                                .onTapGesture {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        zoomScale = zoomScale == 1.0 ? 2.0 : 1.0
+                                    }
                                 }
-                            }
-                    } placeholder: {
-                        Color.gray.opacity(0.2)
+                        } placeholder: {
+                            Color.gray.opacity(0.2)
+                        }
                     }
                 }
             }
 
-            Button(action: {
-                dismiss()
-            }) {
-                Text("CLOSE")
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .padding()
-            }
+
         }
     }
 }

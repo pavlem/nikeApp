@@ -19,7 +19,7 @@ class CartViewModelImpl: ObservableObject {
     func remove(item: CartItem, from context: ModelContext) {
         context.delete(item)
     }
-
+    
     func checkout(cartItems: [CartItem]) {
         print("🛒 Checkout items:")
         for item in cartItems {
@@ -32,40 +32,42 @@ struct CartView: View {
     @State private var viewModel = CartViewModelImpl()
     @Query var cartItems: [CartItem]
     @Environment(\.modelContext) var modelContext
-
+    
     var body: some View {
         
         NavigationStack {
-          
-            List {
             
-                ForEach(cartItems) { item in
+            
+            VStack(spacing: 0) {
+                List {
                     
-                    VStack(alignment: .leading) {
-                        Text(item.title)
-                            .font(.headline)
-                        Text(String(format: "$%.2f", item.price))
-                            .font(.subheadline)
-                    }
-                    .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
-                            viewModel.remove(item: item, from: modelContext)
-                        } label: {
-                            Label(Constants.removeText, systemImage: Constants.removeImageName)
+                    ForEach(cartItems) { item in
+                        
+                        VStack(alignment: .leading) {
+                            Text(item.title)
+                                .font(.headline)
+                            Text(String(format: "$%.2f", item.price))
+                                .font(.subheadline)
+                        }
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                viewModel.remove(item: item, from: modelContext)
+                            } label: {
+                                Label(Constants.removeText, systemImage: Constants.removeImageName)
+                            }
                         }
                     }
                 }
+                
+                
+                CheckoutButton(
+                    title: Constants.checkOutText,
+                    isDisabled: cartItems.isEmpty,
+                    action: { viewModel.checkout(cartItems: cartItems) }
+                )
+                .padding()
             }
             .navigationTitle(Constants.navigationTitle)
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    CheckoutButton(
-                        title: Constants.checkOutText,
-                        isDisabled: cartItems.isEmpty,
-                        action: { viewModel.checkout(cartItems: cartItems) }
-                    )
-                }
-            }
         }
     }
 }
@@ -84,8 +86,9 @@ struct CheckoutButton: View {
     let title: String
     let isDisabled: Bool
     let action: () -> Void
-
+    
     var body: some View {
+        
         Button(action: action) {
             Text(title)
                 .font(.headline)

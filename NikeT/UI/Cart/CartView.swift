@@ -8,74 +8,82 @@
 import SwiftUI
 import SwiftData
 
-
-
-protocol CartViewModel: Observable {
-    func remove(item: CartItem, from context: ModelContext)
-    func checkout(cartItems: [CartItem])
-}
-
-class CartViewModelImpl: ObservableObject {
-    
-    @Published var isLoading = false
-    
-    func remove(item: CartItem, from context: ModelContext) {
-        context.delete(item)
-    }
-    
-    func checkout(cartItems: [CartItem]) {
-        
-        isLoading = true
-        print("🛒 Checkout items:")
-        
-        for item in cartItems {
-            print("- \(item.title) - $\(item.price)")
-        }
-    }
-}
-
 struct CartView: View {
     
     @State var viewModel: CartViewModelImpl
     
+//   cartItems and modelContext are SwiftUl property wrappers, and they only work inside SwiftUl Views (i.e., structs conforming to View).
+//    They rely on SwiftUl's internal environment and view lifecycle to function properly.
+    
     @Query var cartItems: [CartItem]
     @Environment(\.modelContext) private var modelContext
+    
+    // Global Environment property loading state.
     @Environment(\.isLoading) private var isLoading: Binding<Bool>
 
     private let dependencyManager: DependencyManager = DependencyManager.shared
     
     var body: some View {
+        
+        VStack(spacing: 0) {
             
-            VStack(spacing: 0) {
-                
-                List {
-                    ForEach(cartItems) { item in
+            List {
+                ForEach(cartItems) { item in
+                    
+                    NavigationLink {
+                        let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))
                         
-                        NavigationLink {
-                            let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))
-                            
-                            ProductDetailsView(viewModel: vm)
-                        } label: {
-                            CartItemCell(item: item)
-                        }
-                        .swipeActions(edge: .trailing) {
-                            removeAction(for: item)
-                        }
+                        ProductDetailsView(viewModel: vm)
+                    } label: {
+                        CartItemCell(item: item)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        removeAction(for: item)
                     }
                 }
-                
-                CheckoutButton(
-                    title: Constants.checkOutText,
-                    isDisabled: cartItems.isEmpty,
-                    action: { viewModel.checkout(cartItems: cartItems) }
+            }
+            
+            CheckoutButton(
+                title: Constants.checkOutText,
+                isDisabled: cartItems.isEmpty,
+                action: {
+                    Task {
+                        await viewModel.checkout(cartItems: cartItems, context: modelContext)
+
+//                        await viewModel.checkout(cartItems: cartItems)
+                    }
+                }
+            )
+            .padding()
+        }
+        .onReceive(viewModel.$isLoading) {
+            isLoading.wrappedValue = $0
+        }
+        .navigationTitle(Constants.navigationTitle)
+        .alert(item: $viewModel.alert) { alert in
+            
+            switch alert {
+            case .checkoutSuccess:
+                Alert(
+                    title: Text(Constants.checkoutSuccessTitle),
+                    message: Text(Constants.checkoutSuccessMsg),
+                    dismissButton: .default(Text(Constants.okText)) {
+                        viewModel.alert = nil
+                    }
                 )
-                .padding()
+                
+            case .error(let errTxt):
+                
+                Alert(
+                    title: Text(Constants.errorTitleText),
+                    message: Text(errTxt),
+                    dismissButton: .default(Text(Constants.okText)) {
+                        viewModel.alert = nil
+                    }
+                )
+
             }
-            .onReceive(viewModel.$isLoading) {
-                isLoading.wrappedValue = $0
-            }
-            .navigationTitle(Constants.navigationTitle)
-        
+        }
     }
     
     private func removeAction(for item: CartItem) -> some View {
@@ -87,41 +95,16 @@ struct CartView: View {
     }
 }
 
-private struct CartItemCell: View {
-    
-    let item: CartItem
-    
-    var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            AsyncImage(url: URL(string: item.imageURL)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                Color.gray.opacity(0.3)
-            }
-            .frame(width: 60, height: 60)
-            .cornerRadius(8)
-            .clipped()
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.title)
-                    .font(.headline)
-                    .lineLimit(2)
-                Text(String(format: "$%.2f", item.price))
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(.vertical, 8)
-    }
-}
-
 extension CartView {
     struct Constants {
         static var removeText: LocalizedStringKey { "Remove" }
         static var removeImageName: String { "trash" }
         static var checkOutText: String { "Checkout" }
         static var navigationTitle: String { "Cart" }
+        static var errorTitleText: LocalizedStringKey { "Error" }
+        static var okText: LocalizedStringKey { "Ok" }
+        
+        static var checkoutSuccessTitle: LocalizedStringKey { "Success" }
+        static var checkoutSuccessMsg: LocalizedStringKey { "All the items have been checked out!" }
     }
 }

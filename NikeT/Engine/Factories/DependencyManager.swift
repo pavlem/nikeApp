@@ -14,8 +14,10 @@ class DependencyManager {
 extension DependencyManager {
     
     func makeProductsViewModel() -> ProductsViewModelImpl {
-        let productsAPI = ProductsAPIImpl(session: CommsSessionImpl())
-//        let productsAPI = ProductsMockAPIImpl(session: CommsSessionImpl()) // to mock products response 
+        let session = CommsSessionImpl()
+        
+        let productsAPI = ProductsAPIImpl(session: session)
+//        let productsAPI = ProductsMockAPIImpl(session: CommsSessionImpl()) // to mock products response
         let useCase = ProductsUseCaseImpl(api: productsAPI)
         return ProductsViewModelImpl(useCase: useCase)
     }
@@ -26,7 +28,9 @@ extension DependencyManager {
     }
     
     func makeCartViewModel() -> CartViewModelImpl {
-        CartViewModelImpl()
+        let session = CommsSessionImpl()
+
+        return CartViewModelImpl(cartUseCase: CartUseCaseImpl(checkoutAPI: CheckoutAPIImpl(session: session)))
     }
     
 }

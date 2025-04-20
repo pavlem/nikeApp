@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ProductDetailsView: View {
     let product: Product
+    @State private var isZoomPresented = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 if let url = product.imageURL {
-                    NavigationLink(destination: ZoomableImageView(imageURL: url)) {
+                    Button {
+                        isZoomPresented = true
+                    } label: {
                         AsyncImage(url: url) { image in
                             image
                                 .resizable()
@@ -22,6 +25,9 @@ struct ProductDetailsView: View {
                         } placeholder: {
                             Color.gray.opacity(0.3)
                         }
+                    }
+                    .fullScreenCover(isPresented: $isZoomPresented) {
+                        ZoomableImageView(imageURL: url)
                     }
                 }
 
@@ -64,27 +70,42 @@ extension ProductDetailsView {
 
 struct ZoomableImageView: View {
     let imageURL: URL
+    @Environment(\.dismiss) private var dismiss
 
-    @State private var scale: CGFloat = 1.0
+    @State private var zoomScale: CGFloat = 1.0
 
     var body: some View {
-        ScrollView([.horizontal, .vertical]) {
-            AsyncImage(url: imageURL) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .scaleEffect(scale)
-                    .gesture(
-                        MagnificationGesture()
-                            .onChanged { value in scale = value }
-                    )
-            } placeholder: {
-                Color.gray.opacity(0.2)
+        ZStack(alignment: .topTrailing) {
+            Color.black.ignoresSafeArea()
+
+            GeometryReader { geometry in
+                ScrollView(zoomScale > 1 ? [.horizontal, .vertical] : [], showsIndicators: false) {
+                    AsyncImage(url: imageURL) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(
+                                width: geometry.size.width * zoomScale
+                            )
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    zoomScale = zoomScale == 1.0 ? 2.0 : 1.0
+                                }
+                            }
+                    } placeholder: {
+                        Color.gray.opacity(0.2)
+                    }
+                }
             }
-            .frame(maxWidth: .infinity)
+
+            Button(action: {
+                dismiss()
+            }) {
+                Text("CLOSE")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .padding()
+            }
         }
-        .navigationTitle("Zoom")
-        .navigationBarTitleDisplayMode(.inline)
-        .background(Color.black)
     }
 }

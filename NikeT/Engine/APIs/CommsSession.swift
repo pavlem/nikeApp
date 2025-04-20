@@ -6,11 +6,11 @@
 //
 
 import Foundation
-
-enum APIError: Error {
-    case invalidURL
-    case networkError
-}
+//
+//enum APIError: Error {
+//    case invalidURL
+//    case networkError
+//}
 
 protocol CommsSession {
     func request<T: Decodable>(_ urlRequest: URLRequest) async throws -> T

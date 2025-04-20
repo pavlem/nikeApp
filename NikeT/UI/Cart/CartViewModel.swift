@@ -8,6 +8,12 @@
 import SwiftUI
 import SwiftData
 
+enum APIError: Error {
+    case networkError
+    case timeout
+    case invalidURL
+}
+
 protocol CheckoutAPI {
     func checkout(cartItems: [CartItem]) async throws -> VoidDTO
 }
@@ -16,31 +22,25 @@ class CheckoutAPIImpl: API, CheckoutAPI {
    
     func checkout(cartItems: [CartItem]) async throws -> VoidDTO {
         
-        
-        // TODO: convert cartItems to DTO if needed
-//        let requestBuilder = RequestBuilder(
-//            route: .checkout,
-//            method: .post,
-//            body: cartItems
-//        )
+        let pollingURL = URL(string: "https://httpbin.org/delay/10")!
+        let maxWaitTime: TimeInterval = 4 // 60
+        let pollInterval: TimeInterval = 1 //3
 
-//        do {
-            
-        try await Task.sleep(nanoseconds: 1_000_000_000)
-        return VoidDTO()
-        
-//            throw APIError.networkError
-        
-            
-//            let urlRequest = try requestBuilder.build()
-//            Task {
-//                let _: EmptyResponse = try await session.request(urlRequest)
-//                print("✅ Checkout successful")
-//            }
-            
-//        } catch {
-//            print("❌ Checkout failed:", error)
-//        }
+        let startTime = Date()
+
+        while Date().timeIntervalSince(startTime) < maxWaitTime {
+            print("Polling...")
+            let (data, response) = try await URLSession.shared.data(from: pollingURL)
+
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                // Simulate detecting success condition in response (always true in this fake API)
+                return VoidDTO()
+            }
+
+            try await Task.sleep(nanoseconds: UInt64(pollInterval * 1_000_000_000))
+        }
+
+        throw APIError.timeout
     }
 }
 
@@ -59,14 +59,6 @@ class CartUseCaseImpl: CartUseCase {
         let _ = try await checkoutAPI.checkout(cartItems: cartItems)
     }
 }
-
-
-
-
-
-
-
-
 
 enum CheckoutAlert: Identifiable {
     case checkoutSuccess

@@ -49,14 +49,14 @@ class CartViewModelImpl: ObservableObject {
     @Published var isLoading = false
     @Published var alert: CheckoutAlert?
 
-    private let cartUseCase: CartUseCase
+    private let useCase: CartUseCase
     
-    init(cartUseCase: CartUseCase) {
-        self.cartUseCase = cartUseCase
+    init(useCase: CartUseCase) {
+        self.useCase = useCase
     }
     
     func remove(item: CartItem, from context: ModelContext) {
-        cartUseCase.remove(item: item, from: context)
+        useCase.remove(item: item, from: context)
     }
     
     @MainActor
@@ -68,7 +68,7 @@ class CartViewModelImpl: ObservableObject {
         }
         
         do {
-            try await cartUseCase.checkout(cartItems: cartItems)
+            try await useCase.checkout(cartItems: cartItems)
             for item in cartItems {
                 context.delete(item)
             }

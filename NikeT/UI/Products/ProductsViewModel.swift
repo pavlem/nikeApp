@@ -30,7 +30,6 @@ protocol ProductsViewModel: ObservableObject {
     var isFetchNeeded: Bool { get }
     
     func fetchProducts() async
-    func reloadProducts() async
 }
 
 class ProductsViewModelImpl: ProductsViewModel {
@@ -57,10 +56,5 @@ class ProductsViewModelImpl: ProductsViewModel {
         } catch {
             self.error = .networkError(error)
         }
-    }
-    
-    @MainActor
-    func reloadProducts() async {
-        await fetchProducts()
     }
 }

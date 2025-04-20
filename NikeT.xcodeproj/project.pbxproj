@@ -33,6 +33,7 @@
 		6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3512DB58092000F2F0E /* CartViewModel.swift */; };
 		6024C3542DB5921C000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */; };
 		6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3552DB5924B000F2F0E /* CartUseCase.swift */; };
+		6024C3582DB598E9000F2F0E /* ProductDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */; };
 		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
 		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
 		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
@@ -84,6 +85,7 @@
 		6024C3512DB58092000F2F0E /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
 		6024C3552DB5924B000F2F0E /* CartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUseCase.swift; sourceTree = "<group>"; };
+		6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsUseCase.swift; sourceTree = "<group>"; };
 		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +226,7 @@
 			children = (
 				6024C3552DB5924B000F2F0E /* CartUseCase.swift */,
 				6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */,
+				6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				6024C34A2DB517BD000F2F0E /* ProductDetailsViewModel.swift in Sources */,
 				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,
 				6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */,
+				6024C3582DB598E9000F2F0E /* ProductDetailsUseCase.swift in Sources */,
 				6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */,
 				6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */,
 				6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */,

@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-private struct IsLoadingKey: EnvironmentKey {
-  static let defaultValue: Binding<Bool> = .constant(false)
-}
-
-extension EnvironmentValues {
-  var isLoading: Binding<Bool> {
-    get { self[IsLoadingKey.self] }
-    set { self[IsLoadingKey.self] = newValue }
-  }
-}
-
-
-
 struct MainTabView: View {
     
     @State private var isLoading = false

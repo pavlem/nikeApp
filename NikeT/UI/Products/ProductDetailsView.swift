@@ -60,9 +60,14 @@ struct ProductDetailsView: View {
                     Button(action: {
                         
                         if let existing = viewModel.existingCartItem(cartItems: cartItems) {
-                            modelContext.delete(existing)
+                            
+                            viewModel.remove(item: existing, from: modelContext)
+                            
                         } else {
-                            modelContext.insert(CartItem(product: viewModel.product))
+                            viewModel.insert(
+                                cartItem: CartItem(product: viewModel.product),
+                                to: modelContext
+                            )
                         }
                         
                     }) {

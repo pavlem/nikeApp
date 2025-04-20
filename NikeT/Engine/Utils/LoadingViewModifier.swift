@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+private struct IsLoadingKey: EnvironmentKey {
+  static let defaultValue: Binding<Bool> = .constant(false)
+}
+
+extension EnvironmentValues {
+  var isLoading: Binding<Bool> {
+    get { self[IsLoadingKey.self] }
+    set { self[IsLoadingKey.self] = newValue }
+  }
+}
+
 private struct LoadingViewModifier: ViewModifier {
     let isLoading: Bool
 

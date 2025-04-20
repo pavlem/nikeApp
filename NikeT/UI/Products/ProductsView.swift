@@ -38,9 +38,6 @@ struct ProductsView: View {
             guard viewModel.isFetchNeeded else { return }
             await viewModel.fetchProducts()
         }
-        .refreshable {
-            await viewModel.reloadProducts()
-        }
         .navigationTitle(Constants.navigationTitle)
         .alert(item: $viewModel.error) { error in
             Alert(

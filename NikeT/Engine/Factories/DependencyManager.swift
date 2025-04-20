@@ -14,8 +14,8 @@ class DependencyManager {
 extension DependencyManager {
     
     func makeProductsViewModel() -> ProductsViewModelImpl {
-//        let productsAPI = ProductsAPIImpl(session: CommsSessionImpl())
-        let productsAPI = ProductsMockAPIImpl(session: CommsSessionImpl()) // to mock products response 
+        let productsAPI = ProductsAPIImpl(session: CommsSessionImpl())
+//        let productsAPI = ProductsMockAPIImpl(session: CommsSessionImpl()) // to mock products response 
         let useCase = ProductsUseCaseImpl(api: productsAPI)
         return ProductsViewModelImpl(useCase: useCase)
     }

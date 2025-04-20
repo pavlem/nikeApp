@@ -26,6 +26,7 @@
 		6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */; };
 		6024C30C2DB4EAFA000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */; };
 		6024C3412DB4F528000F2F0E /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */; };
+		6024C3432DB4FC79000F2F0E /* ProductGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */; };
 		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
 		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
 		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
@@ -70,6 +71,7 @@
 		6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDTO.swift; sourceTree = "<group>"; };
 		6024C30B2DB4EAFA000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
 		6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridCell.swift; sourceTree = "<group>"; };
 		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				6024C2E62DB4E4D8000F2F0E /* ProductsView.swift */,
+				6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */,
 				6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */,
 				6024C2E42DB4E4D8000F2F0E /* ProductCell.swift */,
 				6024C2E52DB4E4D8000F2F0E /* ProductDetailsView.swift */,
@@ -421,6 +424,7 @@
 				6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */,
 				6024C2F22DB4E54E000F2F0E /* DependencyManager.swift in Sources */,
 				6024C2EF2DB4E540000F2F0E /* Product.swift in Sources */,
+				6024C3432DB4FC79000F2F0E /* ProductGridCell.swift in Sources */,
 				6024C2E82DB4E4D8000F2F0E /* ProductCell.swift in Sources */,
 				6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */,
 				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,

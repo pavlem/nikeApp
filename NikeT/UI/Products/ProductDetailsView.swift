@@ -8,19 +8,6 @@
 import SwiftUI
 import SwiftData
 
-@Model
-final class CartItem {
-    var id: Int
-    var title: String
-    var price: Double
-
-    init(id: Int, title: String, price: Double) {
-        self.id = id
-        self.title = title
-        self.price = price
-    }
-}
-
 struct ProductDetailsView: View {
     let product: Product
     @State private var isZoomPresented = false
@@ -56,19 +43,26 @@ struct ProductDetailsView: View {
                     .bold()
 
                 HStack(spacing: 16) {
+                    
                     Text(String(format: "$%.2f", product.price))
                         .font(.title2)
                     
                     Spacer()
                     
                     Button(action: {
-                        print("Add to Cart tapped for: \(product.title)")
+                        if isInCart {
+                            if let item = cartItems.first(where: { $0.id == product.id }) {
+                                modelContext.delete(item)
+                            }
+                        } else {
+                            modelContext.insert(CartItem(product: product))
+                        }
                     }) {
-                        Text("Add to Cart")
+                        Text(isInCart ? "Remove from Cart" : "Add to Cart")
                             .font(.headline)
                             .padding(.horizontal)
                             .padding(.vertical, 8)
-                            .background(Color.blue)
+                            .background(isInCart ? Color.red : Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
@@ -90,25 +84,6 @@ struct ProductDetailsView: View {
 
                 Text(product.description)
                     .font(.body)
-
-                Button(action: {
-                    if isInCart {
-                        if let item = cartItems.first(where: { $0.id == product.id }) {
-                            modelContext.delete(item)
-                        }
-                    } else {
-                        let item = CartItem(id: product.id, title: product.title, price: product.price)
-                        modelContext.insert(item)
-                    }
-                }) {
-                    Text(isInCart ? "Remove from Cart" : "Add to Cart")
-                        .font(.headline)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .background(isInCart ? Color.red : Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
             }
             .padding()
         }
@@ -169,5 +144,93 @@ struct ZoomableImageView: View {
                 }
             }
         }
+    }
+}
+
+
+
+@Model
+final class CartItem {
+    var id: Int
+    var title: String
+    var price: Double
+    var descriptionOfItem: String
+    var category: String
+    var imageURL: String
+    var ratingRate: Double
+    var ratingCount: Int
+
+    init(id: Int, title: String, price: Double, description: String, category: String, imageURL: String, ratingRate: Double, ratingCount: Int) {
+        self.id = id
+        self.title = title
+        self.price = price
+        self.descriptionOfItem = description
+        self.category = category
+        self.imageURL = imageURL
+        self.ratingRate = ratingRate
+        self.ratingCount = ratingCount
+    }
+}
+
+struct Product: Identifiable, Codable {
+    let id: Int
+    let title: String
+    let price: Double
+    let description: String
+    let category: String
+    let imageURL: URL?
+    let rating: ProductRating
+}
+
+struct ProductRating: Codable {
+    let rate: Double
+    let count: Int
+}
+
+extension Product {
+    init(dto: ProductDTO) {
+        self.id = dto.id
+        self.title = dto.title
+        self.price = dto.price
+        self.description = dto.description
+        self.category = dto.category
+        self.imageURL = URL(string: dto.image)
+        
+        self.rating = ProductRating(rate: dto.rating.rate, count: dto.rating.count)
+    }
+}
+
+extension Product {
+    static var mockProducts: [Product] {
+        (1...10).map {
+            Product(id: $0, title: "Product \($0)", price: Double($0) * 10.0, description: "Description for product \($0)", category: "Category", imageURL: URL(string: "https://via.placeholder.com/150")!, rating: ProductRating(rate: 0.1, count: 5))
+        }
+    }
+}
+
+extension Product {
+    init(cartItem: CartItem) {
+        self.id = cartItem.id
+        self.title = cartItem.title
+        self.price = cartItem.price
+        self.description = cartItem.descriptionOfItem
+        self.category = cartItem.category
+        self.imageURL = URL(string: cartItem.imageURL)
+        self.rating = ProductRating(rate: cartItem.ratingRate, count: cartItem.ratingCount)
+    }
+}
+
+extension CartItem {
+    convenience init(product: Product) {
+        self.init(
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            description: product.description,
+            category: product.category,
+            imageURL: product.imageURL?.absoluteString ?? "",
+            ratingRate: product.rating.rate,
+            ratingCount: product.rating.count
+        )
     }
 }

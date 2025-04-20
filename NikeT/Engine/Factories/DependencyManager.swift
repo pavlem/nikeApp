@@ -19,4 +19,14 @@ extension DependencyManager {
         let useCase = ProductsUseCaseImpl(api: productsAPI)
         return ProductsViewModelImpl(useCase: useCase)
     }
+    
+    func makeProductDetailsViewModel(product: Product) -> ProductDetailsViewModelImpl {
+        
+        ProductDetailsViewModelImpl(product: product)
+    }
+    
+    func makeCartViewModel() -> CartViewModelImpl {
+        CartViewModelImpl()
+    }
+    
 }

@@ -26,7 +26,6 @@ struct MainTabView: View {
     
     var dependencyManager = DependencyManager.shared
     
-    
     var body: some View {
         
         TabView {
@@ -39,7 +38,7 @@ struct MainTabView: View {
             }
 
             NavigationStack {
-                CartView()
+                CartView(viewModel: dependencyManager.makeCartViewModel())
             }
             .tabItem {
                 Label(Constants.cartTabTitle, systemImage: Constants.cartTabImage)

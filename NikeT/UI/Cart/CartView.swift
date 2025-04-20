@@ -8,20 +8,26 @@
 import SwiftUI
 import SwiftData
 
+
+
 protocol CartViewModel: Observable {
-    
     func remove(item: CartItem, from context: ModelContext)
     func checkout(cartItems: [CartItem])
 }
 
 class CartViewModelImpl: ObservableObject {
     
+    @Published var isLoading = false
+    
     func remove(item: CartItem, from context: ModelContext) {
         context.delete(item)
     }
     
     func checkout(cartItems: [CartItem]) {
+        
+        isLoading = true
         print("🛒 Checkout items:")
+        
         for item in cartItems {
             print("- \(item.title) - $\(item.price)")
         }
@@ -29,22 +35,32 @@ class CartViewModelImpl: ObservableObject {
 }
 
 struct CartView: View {
-    @State private var viewModel = CartViewModelImpl()
+    
+    @State var viewModel: CartViewModelImpl
+    
     @Query var cartItems: [CartItem]
-    @Environment(\.modelContext) var modelContext
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.isLoading) private var isLoading: Binding<Bool>
+
+    private let dependencyManager: DependencyManager = DependencyManager.shared
     
     var body: some View {
-        
-        NavigationStack {
             
             VStack(spacing: 0) {
+                
                 List {
-                    
                     ForEach(cartItems) { item in
-                        CartItemCell(item: item)
-                            .swipeActions(edge: .trailing) {
-                                removeAction(for: item)
-                            }
+                        
+                        NavigationLink {
+                            let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))
+                            
+                            ProductDetailsView(viewModel: vm)
+                        } label: {
+                            CartItemCell(item: item)
+                        }
+                        .swipeActions(edge: .trailing) {
+                            removeAction(for: item)
+                        }
                     }
                 }
                 
@@ -55,8 +71,11 @@ struct CartView: View {
                 )
                 .padding()
             }
+            .onReceive(viewModel.$isLoading) {
+                isLoading.wrappedValue = $0
+            }
             .navigationTitle(Constants.navigationTitle)
-        }
+        
     }
     
     private func removeAction(for item: CartItem) -> some View {
@@ -71,7 +90,7 @@ struct CartView: View {
 private struct CartItemCell: View {
     
     let item: CartItem
-
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             AsyncImage(url: URL(string: item.imageURL)) { image in
@@ -84,7 +103,7 @@ private struct CartItemCell: View {
             .frame(width: 60, height: 60)
             .cornerRadius(8)
             .clipped()
-
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
                     .font(.headline)

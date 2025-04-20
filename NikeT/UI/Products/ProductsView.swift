@@ -11,15 +11,18 @@ struct ProductsView: View {
     
     @StateObject var viewModel: ProductsViewModelImpl
     @Environment(\.isLoading) private var isLoading: Binding<Bool>
+  
+    private let dependencyManager: DependencyManager = DependencyManager.shared
     
     var body: some View {
         
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Constants.gridSpacing) {
                 ForEach(viewModel.products) { product in
+                    
                     NavigationLink {
-                        
-                        ProductDetailsView(viewModel: ProductDetailsViewModelImpl(product: product))
+                        let viewModel = dependencyManager.makeProductDetailsViewModel(product: product)
+                        ProductDetailsView(viewModel: viewModel)
                         
                     } label: {
                         ProductGridCell(product: product)

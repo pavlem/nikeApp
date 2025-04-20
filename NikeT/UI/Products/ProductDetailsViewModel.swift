@@ -33,7 +33,10 @@ class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
     
     private(set) var product: Product
     
-    var categoryText: String { "\(Constants.categoryText)" + ": " + product.category }
+    var categoryText: String {
+        "\(Constants.categoryText)" + ": " + product.category
+    }
+    
     var descriptionText: String { product.description }
     var imageURL: URL? { product.imageURL }
     var priceText: String { String(format: "$%.2f", product.price) }
@@ -78,6 +81,6 @@ class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
 
 extension ProductDetailsViewModelImpl {
     struct Constants {
-        static var categoryText: LocalizedStringKey { "Category" }
+        static var categoryText: String { "Category" }
     }
 }

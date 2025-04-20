@@ -79,7 +79,6 @@ struct ProductDetailsView: View {
                 
                 HStack(spacing: 4) {
                     ForEach(1...5, id: \.self) { index in
-                        
                         Image(systemName: viewModel.imageName(forIndex: index))
                             .foregroundColor(.yellow)
                     }

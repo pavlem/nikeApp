@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductGridCell: View {
     
-    let product: Product
+    let product: Product // we can also introduce a ViewModel here, but it's a simple View and there is no need.
 
     var body: some View {
         
@@ -54,7 +54,6 @@ extension ProductGridCell {
         static var shadowX: CGFloat = 0
         static var shadowY: CGFloat = 2
         static var titleLineLimit: Int = 2
-        
         static var placeholderColorOpacity = 0.3
     }
 }

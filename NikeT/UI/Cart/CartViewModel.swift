@@ -22,19 +22,25 @@ class CheckoutAPIImpl: API, CheckoutAPI {
    
     func checkout(cartItems: [CartItem]) async throws -> VoidDTO {
         
-        let pollingURL = URL(string: "https://httpbin.org/delay/10")!
-        let maxWaitTime: TimeInterval = 4 // 60
-        let pollInterval: TimeInterval = 1 //3
-
+        let pollingURL = URL(string: "https://httpbin.org/delay/5")!
+        let maxWaitTime: TimeInterval = 10
+        let pollInterval: TimeInterval = 3
         let startTime = Date()
 
         while Date().timeIntervalSince(startTime) < maxWaitTime {
             print("Polling...")
-            let (data, response) = try await URLSession.shared.data(from: pollingURL)
 
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                // Simulate detecting success condition in response (always true in this fake API)
-                return VoidDTO()
+            var request = URLRequest(url: pollingURL)
+            request.timeoutInterval = pollInterval  // ⏱️ this is the key
+
+            do {
+                let (data, response) = try await URLSession.shared.data(for: request)
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    return VoidDTO()
+                }
+            } catch {
+                print("Polling attempt failed or timed out")
+//                print("Polling attempt failed or timed out: \(error)")
             }
 
             try await Task.sleep(nanoseconds: UInt64(pollInterval * 1_000_000_000))

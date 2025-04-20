@@ -13,5 +13,6 @@ struct NikeTApp: App {
         WindowGroup {
             MainTabView()
         }
+        .modelContainer(for: CartItem.self) // ← this is required
     }
 }

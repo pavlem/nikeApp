@@ -8,14 +8,21 @@
 import SwiftUI
 import SwiftData
 
+@MainActor
 struct ProductDetailsView: View {
+    
     let product: Product
+    
     @State private var isZoomPresented = false
     @Environment(\.modelContext) private var modelContext
     @Query private var cartItems: [CartItem]
 
     private var isInCart: Bool {
-        cartItems.contains { $0.id == product.id }
+        if cartItems.first(where: { $0.id == product.id }) != nil {
+            return true
+        } else {
+            return false
+        }
     }
 
     var body: some View {
@@ -50,13 +57,21 @@ struct ProductDetailsView: View {
                     Spacer()
                     
                     Button(action: {
-                        if isInCart {
-                            if let item = cartItems.first(where: { $0.id == product.id }) {
-                                modelContext.delete(item)
-                            }
+                        
+                        
+                        if let existing = cartItems.first(where: { $0.id == product.id }) {
+                            modelContext.delete(existing)
+//                            print("Cart items in DB:", cartItems.map(\.id))
+
                         } else {
                             modelContext.insert(CartItem(product: product))
+//                            print("Cart items in DB:", cartItems.map(\.id))
+
                         }
+                        
+
+                        
+
                     }) {
                         Text(isInCart ? "Remove from Cart" : "Add to Cart")
                             .font(.headline)

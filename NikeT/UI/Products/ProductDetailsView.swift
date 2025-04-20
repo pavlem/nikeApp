@@ -35,8 +35,24 @@ struct ProductDetailsView: View {
                     .font(.title)
                     .bold()
 
-                Text(String(format: "$%.2f", product.price))
-                    .font(.title2)
+                HStack(spacing: 16) {
+                    Text(String(format: "$%.2f", product.price))
+                        .font(.title2)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        print("Add to Cart tapped for: \(product.title)")
+                    }) {
+                        Text("Add to Cart")
+                            .font(.headline)
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                }
 
                 HStack(spacing: 4) {
                     ForEach(1...5, id: \.self) { index in

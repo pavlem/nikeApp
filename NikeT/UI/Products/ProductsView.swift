@@ -7,62 +7,6 @@
 
 import SwiftUI
 
-enum ProductsError: LocalizedError, Identifiable {
-    case testError
-    
-    var id: String { errorDescription ?? UUID().uuidString }
-    
-    var errorDescription: String? {
-        switch self {
-        case .testError:
-            return "This is a test error."
-        }
-    }
-}
-
-protocol ProductsViewModel: ObservableObject {
-    var products: [Product] { get set }
-    var isLoading: Bool { get set }
-    var error: ProductsError? { get set }
-    var isFetchNeeded: Bool { get }
-    
-    func fetchProducts() async
-    func reloadProducts() async
-}
-
-class ProductsViewModelImpl: ProductsViewModel {
-    @Published var products: [Product] = []
-    @Published var isLoading = false
-    @Published var error: ProductsError?
-    
-    var isFetchNeeded: Bool { products.isEmpty }
-    
-    private let useCase: ProductsUseCase
-    
-    init(useCase: ProductsUseCase) {
-        self.useCase = useCase
-    }
-    
-    @MainActor
-    func fetchProducts() async {
-        isLoading = true
-        
-        defer { isLoading = false }
-        
-        do {
-            products = try await useCase.fetchProducts()
-        } catch {
-            self.error = .testError // Replace with appropriate error handling
-        }
-    }
-    
-    @MainActor
-    func reloadProducts() async {
-        await fetchProducts()
-    }
-    
-}
-
 struct ProductsView: View {
     
     @StateObject var viewModel: ProductsViewModelImpl

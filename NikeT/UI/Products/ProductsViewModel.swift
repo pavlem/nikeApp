@@ -9,6 +9,7 @@ import Foundation
 
 enum ProductsError: LocalizedError, Identifiable {
     case testError
+    case networkError(Error)
     
     var id: String { errorDescription ?? UUID().uuidString }
     
@@ -16,6 +17,8 @@ enum ProductsError: LocalizedError, Identifiable {
         switch self {
         case .testError:
             return "This is a test error."
+        case .networkError(let err):
+            return err.localizedDescription
         }
     }
 }
@@ -52,7 +55,7 @@ class ProductsViewModelImpl: ProductsViewModel {
         do {
             products = try await useCase.fetchProducts()
         } catch {
-            self.error = .testError
+            self.error = .networkError(error)
         }
     }
     

@@ -58,11 +58,8 @@ struct ProductDetailsView: View {
                     Spacer()
                     
                     Button(action: {
-                        
                         if let existing = viewModel.existingCartItem(cartItems: cartItems) {
-                            
                             viewModel.remove(item: existing, from: modelContext)
-                            
                         } else {
                             viewModel.insert(
                                 cartItem: CartItem(product: viewModel.product),

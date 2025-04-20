@@ -24,6 +24,7 @@ struct CheckoutButton: View {
                 .padding(.horizontal)
                 .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
+                .frame(height: 48)
                 .background(isDisabled ? Color.gray : Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)

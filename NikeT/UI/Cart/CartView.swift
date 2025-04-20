@@ -27,19 +27,29 @@ struct CartView: View {
         
         VStack(spacing: 0) {
             
-            List {
-                ForEach(cartItems) { item in
-                    
-                    NavigationLink {
-                        let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))
+            
+            ZStack {
+                
+                List {
+                    ForEach(cartItems) { item in
                         
-                        ProductDetailsView(viewModel: vm)
-                    } label: {
-                        CartItemCell(item: item)
+                        NavigationLink {
+                            let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))
+                            
+                            ProductDetailsView(viewModel: vm)
+                        } label: {
+                            CartItemCell(item: item)
+                        }
+                        .swipeActions(edge: .trailing) {
+                            removeAction(for: item)
+                        }
                     }
-                    .swipeActions(edge: .trailing) {
-                        removeAction(for: item)
-                    }
+                }
+                
+                if cartItems.isEmpty {
+                    Text(Constants.emptyCartTitle)
+                        .font(.title2)
+                        .multilineTextAlignment(.center)
                 }
             }
             
@@ -106,5 +116,7 @@ extension CartView {
         
         static var checkoutSuccessTitle: LocalizedStringKey { "Success" }
         static var checkoutSuccessMsg: LocalizedStringKey { "All the items have been checked out!" }
+        
+        static var emptyCartTitle: LocalizedStringKey { "Please add some items from the product catalog" }
     }
 }

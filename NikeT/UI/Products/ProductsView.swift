@@ -14,13 +14,17 @@ struct ProductsView: View {
     
     var body: some View {
         
-        List(viewModel.products) { product in
-            
-            NavigationLink {
-                ProductDetailsView(product: product)
-            } label: {
-                ProductCell(product: product)
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                ForEach(viewModel.products) { product in
+                    NavigationLink {
+                        ProductDetailsView(product: product)
+                    } label: {
+                        ProductGridCell(product: product)
+                    }
+                }
             }
+            .padding()
         }
         .onReceive(viewModel.$isLoading) {
             isLoading.wrappedValue = $0
@@ -42,6 +46,41 @@ struct ProductsView: View {
                 }
             )
         }
+    }
+}
+
+struct ProductGridCell: View {
+    let product: Product
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            AsyncImage(url: product.imageURL) { image in
+                image
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fill)
+                    .clipped()
+            } placeholder: {
+                Color.gray.opacity(0.3)
+            }
+            .frame(maxWidth: .infinity)
+            .aspectRatio(1, contentMode: .fit)
+            .cornerRadius(8)
+
+            Text(product.title)
+                .font(.headline)
+                .lineLimit(2)
+
+            Text(String(format: "$%.2f", product.price))
+                .font(.subheadline)
+
+            Text(product.category)
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
     }
 }
 

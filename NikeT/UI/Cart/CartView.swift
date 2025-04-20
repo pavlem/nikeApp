@@ -37,28 +37,16 @@ struct CartView: View {
         
         NavigationStack {
             
-            
             VStack(spacing: 0) {
                 List {
                     
                     ForEach(cartItems) { item in
-                        
-                        VStack(alignment: .leading) {
-                            Text(item.title)
-                                .font(.headline)
-                            Text(String(format: "$%.2f", item.price))
-                                .font(.subheadline)
-                        }
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                viewModel.remove(item: item, from: modelContext)
-                            } label: {
-                                Label(Constants.removeText, systemImage: Constants.removeImageName)
+                        CartItemCell(item: item)
+                            .swipeActions(edge: .trailing) {
+                                removeAction(for: item)
                             }
-                        }
                     }
                 }
-                
                 
                 CheckoutButton(
                     title: Constants.checkOutText,
@@ -70,6 +58,44 @@ struct CartView: View {
             .navigationTitle(Constants.navigationTitle)
         }
     }
+    
+    private func removeAction(for item: CartItem) -> some View {
+        Button(role: .destructive) {
+            viewModel.remove(item: item, from: modelContext)
+        } label: {
+            Label(Constants.removeText, systemImage: Constants.removeImageName)
+        }
+    }
+}
+
+private struct CartItemCell: View {
+    
+    let item: CartItem
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            AsyncImage(url: URL(string: item.imageURL)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                Color.gray.opacity(0.3)
+            }
+            .frame(width: 60, height: 60)
+            .cornerRadius(8)
+            .clipped()
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.title)
+                    .font(.headline)
+                    .lineLimit(2)
+                Text(String(format: "$%.2f", item.price))
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.vertical, 8)
+    }
 }
 
 extension CartView {
@@ -78,27 +104,5 @@ extension CartView {
         static var removeImageName: String { "trash" }
         static var checkOutText: String { "Checkout" }
         static var navigationTitle: String { "Cart" }
-    }
-}
-
-struct CheckoutButton: View {
-    
-    let title: String
-    let isDisabled: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        
-        Button(action: action) {
-            Text(title)
-                .font(.headline)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .frame(maxWidth: .infinity)
-                .background(isDisabled ? Color.gray : Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-        }
-        .disabled(isDisabled)
     }
 }

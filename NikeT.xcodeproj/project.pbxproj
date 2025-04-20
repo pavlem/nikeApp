@@ -218,7 +218,6 @@
 				6024C2F92DB4E58A000F2F0E /* API.swift */,
 				6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */,
 				6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */,
-				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -238,6 +237,7 @@
 			children = (
 				6024C3012DB4E7EC000F2F0E /* Route.swift */,
 				6024C3032DB4E841000F2F0E /* RequestBuilder.swift */,
+				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
 			);
 			path = Comms;
 			sourceTree = "<group>";

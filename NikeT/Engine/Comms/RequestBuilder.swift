@@ -38,7 +38,6 @@ class RequestBuilder {
             self.method = method
             self.params = params
             self.headers = headers
-
         }
     
     func build(isContentTypeJson: Bool = true) throws -> URLRequest {
@@ -54,7 +53,6 @@ class RequestBuilder {
             }
         }
         
-        
         // Validate URL
         guard let url = urlComponents.url else {
             throw APIError.invalidURL
@@ -63,12 +61,11 @@ class RequestBuilder {
         // Create URLRequest
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.httpMethod
-
+        
         // Add additional headers if needed
         headers.forEach { key, value in
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
-
         
         // Encode body if necessary
         switch method {

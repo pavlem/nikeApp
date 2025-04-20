@@ -21,7 +21,7 @@ class CheckoutAPIImpl: API, CheckoutAPI {
         }
     }
 
-    private var checkoutResponseDelay = 5 // in seconds
+    private var checkoutResponseDelay = 5 // in seconds, for mocking the polling service
 
     func checkout(cartItems: [CartItem]) async throws -> VoidDTO {
         

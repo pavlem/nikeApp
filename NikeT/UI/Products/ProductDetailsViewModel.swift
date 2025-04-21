@@ -33,7 +33,7 @@ protocol ProductDetailsViewModel: ObservableObject {
 }
 
 class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
-
+    
     @Published var isZoomPresented = false
     var categoryText: String { "\(Constants.categoryText)" + ": " + useCase.product.category }
     var descriptionText: String { useCase.product.description }
@@ -46,7 +46,7 @@ class ProductDetailsViewModelImpl: ProductDetailsViewModel, ObservableObject {
     
     var rate: Double { useCase.product.rating.rate }
     
-
+    
     private var useCase: ProductDetailsUseCase
     
     func remove(item: CartItem, from context: ModelContext) {

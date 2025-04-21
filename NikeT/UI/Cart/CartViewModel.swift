@@ -43,10 +43,14 @@ enum CheckoutError: LocalizedError {
 }
 
 protocol CartViewModel: Observable {
+    var isLoading: Bool { get set }
+    var alert: CheckoutAlert? { get set }
+    
     func remove(item: CartItem, from context: ModelContext)
     func checkout(cartItems: [CartItem], context: ModelContext) async
     func getTotalNumberOfItemsText(cartItems: [CartItem]) -> String
     func getTotalValueOfItemsText(cartItems: [CartItem]) -> String
+    func checkoutAlert()
 }
 
 class CartViewModelImpl: CartViewModel, ObservableObject {
@@ -85,7 +89,7 @@ class CartViewModelImpl: CartViewModel, ObservableObject {
             
             // Network call (simulated long polling)
             try await useCase.checkout(cartItems: cartItems)
-           
+            
             // Delete all items in Cart from DB
             for item in cartItems {
                 context.delete(item)
@@ -93,12 +97,12 @@ class CartViewModelImpl: CartViewModel, ObservableObject {
             
             // Inform the user via Alert
             isLoading = false
-
+            
             alert = .checkoutSuccess
-
+            
         } catch {
             isLoading = false
-
+            
             let err = CheckoutError.checkoutFailed
             alert = .error(err.errorDescription ?? "-")
         }

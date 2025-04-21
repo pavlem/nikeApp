@@ -1,0 +1,816 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6024C2DD2DB4E438000F2F0E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2DC2DB4E438000F2F0E /* CartView.swift */; };
+		6024C2E22DB4E4B7000F2F0E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2E12DB4E4B7000F2F0E /* MainTabView.swift */; };
+		6024C2E72DB4E4D8000F2F0E /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2E52DB4E4D8000F2F0E /* ProductDetailsView.swift */; };
+		6024C2E92DB4E4D8000F2F0E /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2E62DB4E4D8000F2F0E /* ProductsView.swift */; };
+		6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2EC2DB4E53B000F2F0E /* ProductDTO.swift */; };
+		6024C2EF2DB4E540000F2F0E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2EE2DB4E540000F2F0E /* Product.swift */; };
+		6024C2F22DB4E54E000F2F0E /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F12DB4E54E000F2F0E /* DependencyManager.swift */; };
+		6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F52DB4E56A000F2F0E /* LoadingViewModifier.swift */; };
+		6024C2F72DB4E56A000F2F0E /* DebugPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F42DB4E56A000F2F0E /* DebugPrint.swift */; };
+		6024C2FA2DB4E58A000F2F0E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2F92DB4E58A000F2F0E /* API.swift */; };
+		6024C3002DB4E783000F2F0E /* ProductsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */; };
+		6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3012DB4E7EC000F2F0E /* Route.swift */; };
+		6024C3042DB4E841000F2F0E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3032DB4E841000F2F0E /* RequestBuilder.swift */; };
+		6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3052DB4E868000F2F0E /* CommsSession.swift */; };
+		6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */; };
+		6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */; };
+		6024C3412DB4F528000F2F0E /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */; };
+		6024C3432DB4FC79000F2F0E /* ProductGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */; };
+		6024C3452DB50E18000F2F0E /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3442DB50E18000F2F0E /* CartItem.swift */; };
+		6024C3472DB50EA0000F2F0E /* ZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3462DB50EA0000F2F0E /* ZoomableImageView.swift */; };
+		6024C34A2DB517BD000F2F0E /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3492DB517BD000F2F0E /* ProductDetailsViewModel.swift */; };
+		6024C34E2DB5763C000F2F0E /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C34D2DB5763C000F2F0E /* CheckoutButton.swift */; };
+		6024C3502DB58051000F2F0E /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C34F2DB58051000F2F0E /* CartItemCell.swift */; };
+		6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3512DB58092000F2F0E /* CartViewModel.swift */; };
+		6024C3542DB5921C000F2F0E /* CheckoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */; };
+		6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3552DB5924B000F2F0E /* CartUseCase.swift */; };
+		6024C3582DB598E9000F2F0E /* ProductDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */; };
+		6024C35A2DB5A45A000F2F0E /* CartUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024C3592DB5A45A000F2F0E /* CartUseCaseTests.swift */; };
+		602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C12DB4E3A0007C8672 /* NikeTApp.swift */; };
+		602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 602570BF2DB4E3A0007C8672 /* Assets.xcassets */; };
+		602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C62DB4E3A3007C8672 /* NikeTTests.swift */; };
+		602570CC2DB4E3A6007C8672 /* NikeTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570C92DB4E3A6007C8672 /* NikeTUITests.swift */; };
+		602570CD2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602570CA2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift */; };
+		60C1AA4C2DB61CA800532CE1 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 60C1AA4A2DB61CA800532CE1 /* products.json */; };
+		60C1AA4E2DB620A300532CE1 /* ProductsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1AA4D2DB620A300532CE1 /* ProductsUseCaseTests.swift */; };
+		60C1AA502DB623CE00532CE1 /* ProductsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C1AA4F2DB623CE00532CE1 /* ProductsViewModelTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		602570A32DB4E377007C8672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6025708D2DB4E376007C8672 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 602570942DB4E376007C8672;
+			remoteInfo = NikeT;
+		};
+		602570AD2DB4E377007C8672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6025708D2DB4E376007C8672 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 602570942DB4E376007C8672;
+			remoteInfo = NikeT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6024C2DC2DB4E438000F2F0E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		6024C2E12DB4E4B7000F2F0E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		6024C2E52DB4E4D8000F2F0E /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		6024C2E62DB4E4D8000F2F0E /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
+		6024C2EC2DB4E53B000F2F0E /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
+		6024C2EE2DB4E540000F2F0E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6024C2F12DB4E54E000F2F0E /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
+		6024C2F42DB4E56A000F2F0E /* DebugPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrint.swift; sourceTree = "<group>"; };
+		6024C2F52DB4E56A000F2F0E /* LoadingViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModifier.swift; sourceTree = "<group>"; };
+		6024C2F92DB4E58A000F2F0E /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsUseCase.swift; sourceTree = "<group>"; };
+		6024C3012DB4E7EC000F2F0E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		6024C3032DB4E841000F2F0E /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		6024C3052DB4E868000F2F0E /* CommsSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommsSession.swift; sourceTree = "<group>"; };
+		6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPI.swift; sourceTree = "<group>"; };
+		6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoidDTO.swift; sourceTree = "<group>"; };
+		6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
+		6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGridCell.swift; sourceTree = "<group>"; };
+		6024C3442DB50E18000F2F0E /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		6024C3462DB50EA0000F2F0E /* ZoomableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableImageView.swift; sourceTree = "<group>"; };
+		6024C3492DB517BD000F2F0E /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		6024C34D2DB5763C000F2F0E /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
+		6024C34F2DB58051000F2F0E /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
+		6024C3512DB58092000F2F0E /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAPI.swift; sourceTree = "<group>"; };
+		6024C3552DB5924B000F2F0E /* CartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUseCase.swift; sourceTree = "<group>"; };
+		6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsUseCase.swift; sourceTree = "<group>"; };
+		6024C3592DB5A45A000F2F0E /* CartUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUseCaseTests.swift; sourceTree = "<group>"; };
+		602570952DB4E376007C8672 /* NikeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		602570A22DB4E377007C8672 /* NikeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		602570AC2DB4E377007C8672 /* NikeTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		602570BF2DB4E3A0007C8672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		602570C12DB4E3A0007C8672 /* NikeTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTApp.swift; sourceTree = "<group>"; };
+		602570C62DB4E3A3007C8672 /* NikeTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTTests.swift; sourceTree = "<group>"; };
+		602570C92DB4E3A6007C8672 /* NikeTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTUITests.swift; sourceTree = "<group>"; };
+		602570CA2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeTUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		60C1AA4A2DB61CA800532CE1 /* products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
+		60C1AA4D2DB620A300532CE1 /* ProductsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsUseCaseTests.swift; sourceTree = "<group>"; };
+		60C1AA4F2DB623CE00532CE1 /* ProductsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModelTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		602570922DB4E376007C8672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6025709F2DB4E377007C8672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602570A92DB4E377007C8672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6024C2D92DB4E41E000F2F0E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2E12DB4E4B7000F2F0E /* MainTabView.swift */,
+				6024C3482DB50EB9000F2F0E /* Components */,
+				6024C2E32DB4E4CC000F2F0E /* Products */,
+				6024C2DB2DB4E432000F2F0E /* Cart */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6024C2DA2DB4E423000F2F0E /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2FD2DB4E76F000F2F0E /* UseCases */,
+				6024C2FE2DB4E76F000F2F0E /* Comms */,
+				6024C2F82DB4E585000F2F0E /* APIs */,
+				6024C2F32DB4E556000F2F0E /* Utils */,
+				6024C2F02DB4E549000F2F0E /* Factories */,
+				6024C2EA2DB4E52D000F2F0E /* Data */,
+				602570C12DB4E3A0007C8672 /* NikeTApp.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		6024C2DB2DB4E432000F2F0E /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2DC2DB4E438000F2F0E /* CartView.swift */,
+				6024C3512DB58092000F2F0E /* CartViewModel.swift */,
+				6024C34F2DB58051000F2F0E /* CartItemCell.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		6024C2E32DB4E4CC000F2F0E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2E62DB4E4D8000F2F0E /* ProductsView.swift */,
+				6024C3402DB4F528000F2F0E /* ProductsViewModel.swift */,
+				6024C3422DB4FC79000F2F0E /* ProductGridCell.swift */,
+				6024C2E52DB4E4D8000F2F0E /* ProductDetailsView.swift */,
+				6024C3492DB517BD000F2F0E /* ProductDetailsViewModel.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		6024C2EA2DB4E52D000F2F0E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2EB2DB4E535000F2F0E /* Responses */,
+				6024C2EE2DB4E540000F2F0E /* Product.swift */,
+				6024C3442DB50E18000F2F0E /* CartItem.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6024C2EB2DB4E535000F2F0E /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2EC2DB4E53B000F2F0E /* ProductDTO.swift */,
+				6024C3092DB4EA5A000F2F0E /* VoidDTO.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		6024C2F02DB4E549000F2F0E /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2F12DB4E54E000F2F0E /* DependencyManager.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		6024C2F32DB4E556000F2F0E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2F42DB4E56A000F2F0E /* DebugPrint.swift */,
+				6024C2F52DB4E56A000F2F0E /* LoadingViewModifier.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6024C2F82DB4E585000F2F0E /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2F92DB4E58A000F2F0E /* API.swift */,
+				6024C3072DB4EA0A000F2F0E /* ProductsAPI.swift */,
+				6024C3532DB5921C000F2F0E /* CheckoutAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		6024C2FD2DB4E76F000F2F0E /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				6024C3552DB5924B000F2F0E /* CartUseCase.swift */,
+				6024C2FF2DB4E783000F2F0E /* ProductsUseCase.swift */,
+				6024C3572DB598E9000F2F0E /* ProductDetailsUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		6024C2FE2DB4E76F000F2F0E /* Comms */ = {
+			isa = PBXGroup;
+			children = (
+				6024C3012DB4E7EC000F2F0E /* Route.swift */,
+				6024C3032DB4E841000F2F0E /* RequestBuilder.swift */,
+				6024C3052DB4E868000F2F0E /* CommsSession.swift */,
+			);
+			path = Comms;
+			sourceTree = "<group>";
+		};
+		6024C3482DB50EB9000F2F0E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6024C34D2DB5763C000F2F0E /* CheckoutButton.swift */,
+				6024C3462DB50EA0000F2F0E /* ZoomableImageView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6025708C2DB4E376007C8672 = {
+			isa = PBXGroup;
+			children = (
+				602570C22DB4E3A0007C8672 /* NikeT */,
+				602570C72DB4E3A3007C8672 /* NikeTTests */,
+				602570CB2DB4E3A6007C8672 /* NikeTUITests */,
+				602570962DB4E376007C8672 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		602570962DB4E376007C8672 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				602570952DB4E376007C8672 /* NikeT.app */,
+				602570A22DB4E377007C8672 /* NikeTTests.xctest */,
+				602570AC2DB4E377007C8672 /* NikeTUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		602570C22DB4E3A0007C8672 /* NikeT */ = {
+			isa = PBXGroup;
+			children = (
+				6024C2DA2DB4E423000F2F0E /* Engine */,
+				6024C2D92DB4E41E000F2F0E /* UI */,
+				602570CE2DB4E3AC007C8672 /* Resources */,
+			);
+			path = NikeT;
+			sourceTree = "<group>";
+		};
+		602570C72DB4E3A3007C8672 /* NikeTTests */ = {
+			isa = PBXGroup;
+			children = (
+				602570C62DB4E3A3007C8672 /* NikeTTests.swift */,
+				6024C3592DB5A45A000F2F0E /* CartUseCaseTests.swift */,
+				60C1AA4D2DB620A300532CE1 /* ProductsUseCaseTests.swift */,
+				60C1AA4F2DB623CE00532CE1 /* ProductsViewModelTests.swift */,
+			);
+			path = NikeTTests;
+			sourceTree = "<group>";
+		};
+		602570CB2DB4E3A6007C8672 /* NikeTUITests */ = {
+			isa = PBXGroup;
+			children = (
+				602570C92DB4E3A6007C8672 /* NikeTUITests.swift */,
+				602570CA2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift */,
+			);
+			path = NikeTUITests;
+			sourceTree = "<group>";
+		};
+		602570CE2DB4E3AC007C8672 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60C1AA4B2DB61CA800532CE1 /* JsonFiles */,
+				602570BF2DB4E3A0007C8672 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		60C1AA4B2DB61CA800532CE1 /* JsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				60C1AA4A2DB61CA800532CE1 /* products.json */,
+			);
+			path = JsonFiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		602570942DB4E376007C8672 /* NikeT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602570B62DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeT" */;
+			buildPhases = (
+				602570912DB4E376007C8672 /* Sources */,
+				602570922DB4E376007C8672 /* Frameworks */,
+				602570932DB4E376007C8672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NikeT;
+			packageProductDependencies = (
+			);
+			productName = NikeT;
+			productReference = 602570952DB4E376007C8672 /* NikeT.app */;
+			productType = "com.apple.product-type.application";
+		};
+		602570A12DB4E377007C8672 /* NikeTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602570B92DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeTTests" */;
+			buildPhases = (
+				6025709E2DB4E377007C8672 /* Sources */,
+				6025709F2DB4E377007C8672 /* Frameworks */,
+				602570A02DB4E377007C8672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				602570A42DB4E377007C8672 /* PBXTargetDependency */,
+			);
+			name = NikeTTests;
+			packageProductDependencies = (
+			);
+			productName = NikeTTests;
+			productReference = 602570A22DB4E377007C8672 /* NikeTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		602570AB2DB4E377007C8672 /* NikeTUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602570BC2DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeTUITests" */;
+			buildPhases = (
+				602570A82DB4E377007C8672 /* Sources */,
+				602570A92DB4E377007C8672 /* Frameworks */,
+				602570AA2DB4E377007C8672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				602570AE2DB4E377007C8672 /* PBXTargetDependency */,
+			);
+			name = NikeTUITests;
+			packageProductDependencies = (
+			);
+			productName = NikeTUITests;
+			productReference = 602570AC2DB4E377007C8672 /* NikeTUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6025708D2DB4E376007C8672 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					602570942DB4E376007C8672 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					602570A12DB4E377007C8672 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 602570942DB4E376007C8672;
+					};
+					602570AB2DB4E377007C8672 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 602570942DB4E376007C8672;
+					};
+				};
+			};
+			buildConfigurationList = 602570902DB4E376007C8672 /* Build configuration list for PBXProject "NikeT" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6025708C2DB4E376007C8672;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 602570962DB4E376007C8672 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				602570942DB4E376007C8672 /* NikeT */,
+				602570A12DB4E377007C8672 /* NikeTTests */,
+				602570AB2DB4E377007C8672 /* NikeTUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		602570932DB4E376007C8672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				602570C52DB4E3A0007C8672 /* Assets.xcassets in Resources */,
+				60C1AA4C2DB61CA800532CE1 /* products.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602570A02DB4E377007C8672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602570AA2DB4E377007C8672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		602570912DB4E376007C8672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6024C3062DB4E868000F2F0E /* CommsSession.swift in Sources */,
+				6024C3042DB4E841000F2F0E /* RequestBuilder.swift in Sources */,
+				6024C3502DB58051000F2F0E /* CartItemCell.swift in Sources */,
+				6024C3452DB50E18000F2F0E /* CartItem.swift in Sources */,
+				6024C2DD2DB4E438000F2F0E /* CartView.swift in Sources */,
+				6024C2E72DB4E4D8000F2F0E /* ProductDetailsView.swift in Sources */,
+				6024C3082DB4EA0A000F2F0E /* ProductsAPI.swift in Sources */,
+				6024C2F22DB4E54E000F2F0E /* DependencyManager.swift in Sources */,
+				6024C2EF2DB4E540000F2F0E /* Product.swift in Sources */,
+				6024C3432DB4FC79000F2F0E /* ProductGridCell.swift in Sources */,
+				6024C3022DB4E7EC000F2F0E /* Route.swift in Sources */,
+				6024C34A2DB517BD000F2F0E /* ProductDetailsViewModel.swift in Sources */,
+				6024C30A2DB4EA5A000F2F0E /* VoidDTO.swift in Sources */,
+				6024C3562DB5924B000F2F0E /* CartUseCase.swift in Sources */,
+				6024C3582DB598E9000F2F0E /* ProductDetailsUseCase.swift in Sources */,
+				6024C2ED2DB4E53B000F2F0E /* ProductDTO.swift in Sources */,
+				6024C2F62DB4E56A000F2F0E /* LoadingViewModifier.swift in Sources */,
+				6024C3522DB58092000F2F0E /* CartViewModel.swift in Sources */,
+				6024C2F72DB4E56A000F2F0E /* DebugPrint.swift in Sources */,
+				6024C34E2DB5763C000F2F0E /* CheckoutButton.swift in Sources */,
+				6024C3002DB4E783000F2F0E /* ProductsUseCase.swift in Sources */,
+				6024C3472DB50EA0000F2F0E /* ZoomableImageView.swift in Sources */,
+				6024C3542DB5921C000F2F0E /* CheckoutAPI.swift in Sources */,
+				6024C2FA2DB4E58A000F2F0E /* API.swift in Sources */,
+				6024C2E92DB4E4D8000F2F0E /* ProductsView.swift in Sources */,
+				602570C42DB4E3A0007C8672 /* NikeTApp.swift in Sources */,
+				6024C3412DB4F528000F2F0E /* ProductsViewModel.swift in Sources */,
+				6024C2E22DB4E4B7000F2F0E /* MainTabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6025709E2DB4E377007C8672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				602570C82DB4E3A3007C8672 /* NikeTTests.swift in Sources */,
+				6024C35A2DB5A45A000F2F0E /* CartUseCaseTests.swift in Sources */,
+				60C1AA502DB623CE00532CE1 /* ProductsViewModelTests.swift in Sources */,
+				60C1AA4E2DB620A300532CE1 /* ProductsUseCaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		602570A82DB4E377007C8672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				602570CC2DB4E3A6007C8672 /* NikeTUITests.swift in Sources */,
+				602570CD2DB4E3A6007C8672 /* NikeTUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		602570A42DB4E377007C8672 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 602570942DB4E376007C8672 /* NikeT */;
+			targetProxy = 602570A32DB4E377007C8672 /* PBXContainerItemProxy */;
+		};
+		602570AE2DB4E377007C8672 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 602570942DB4E376007C8672 /* NikeT */;
+			targetProxy = 602570AD2DB4E377007C8672 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		602570B42DB4E377007C8672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		602570B52DB4E377007C8672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		602570B72DB4E377007C8672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HE2F3NZ6AQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		602570B82DB4E377007C8672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HE2F3NZ6AQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.testp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		602570BA2DB4E377007C8672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nike.NikeTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NikeT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NikeT";
+			};
+			name = Debug;
+		};
+		602570BB2DB4E377007C8672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nike.NikeTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NikeT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NikeT";
+			};
+			name = Release;
+		};
+		602570BD2DB4E377007C8672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nike.NikeTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NikeT;
+			};
+			name = Debug;
+		};
+		602570BE2DB4E377007C8672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ADQJ6W5M8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nike.NikeTUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NikeT;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		602570902DB4E376007C8672 /* Build configuration list for PBXProject "NikeT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602570B42DB4E377007C8672 /* Debug */,
+				602570B52DB4E377007C8672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		602570B62DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602570B72DB4E377007C8672 /* Debug */,
+				602570B82DB4E377007C8672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		602570B92DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602570BA2DB4E377007C8672 /* Debug */,
+				602570BB2DB4E377007C8672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		602570BC2DB4E377007C8672 /* Build configuration list for PBXNativeTarget "NikeTUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602570BD2DB4E377007C8672 /* Debug */,
+				602570BE2DB4E377007C8672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6025708D2DB4E376007C8672 /* Project object */;
+}

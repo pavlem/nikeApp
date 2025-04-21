@@ -35,7 +35,7 @@ struct ZoomableImageView: View {
                 }
                 
                 GeometryReader { geometry in
-                   
+                    
                     ScrollView(zoomScale > 1 ? [.horizontal, .vertical] : [], showsIndicators: false) {
                         AsyncImage(url: imageURL) { image in
                             image
@@ -58,6 +58,3 @@ struct ZoomableImageView: View {
         }
     }
 }
-
-
-

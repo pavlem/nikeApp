@@ -11,7 +11,13 @@ struct MainTabView: View {
     
     @State private var isLoading = false
     
-    var dependencyManager = DependencyManager.shared
+//    MainTabView serves as app’s entry point into the main feature areas (ProductsView and CartView) and it's a place to inject dependencies and provide view models to child views.
+    
+    private let dependencyManager: DependencyManager
+
+    init(dependencyManager: DependencyManager = .shared) {
+        self.dependencyManager = dependencyManager
+    }
     
     var body: some View {
         

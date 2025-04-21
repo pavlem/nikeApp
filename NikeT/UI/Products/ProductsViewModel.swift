@@ -33,6 +33,7 @@ protocol ProductsViewModel: ObservableObject {
 }
 
 class ProductsViewModelImpl: ProductsViewModel {
+    
     @Published var products: [Product] = []
     @Published var isLoading = false
     @Published var error: ProductsError?

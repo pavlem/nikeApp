@@ -48,19 +48,20 @@ final class CartUseCaseTests: XCTestCase {
         XCTAssertEqual(mockAPI.passedCartItems.map(\.id), cartItems.map(\.id))
     }
 
-//    func testRemove_deletesItemFromModelContext() throws {
-//        // Given
-//        let container = try ModelContainer(for: CartItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-//        let context = ModelContext(container)
-//        let item = CartItem(id: 1, title: "Test", price: 10.0, description: "", category: "", imageURL: "", ratingRate: 0, ratingCount: 0)
-//        context.insert(item)
-//
-//        // When
-//        sut.remove(item: item, from: context)
-//
-//        // Then
-//        let descriptor = FetchDescriptor<CartItem>(predicate: #Predicate { $0.id == item.id })
-//        let results = try context.fetch(descriptor)
-//        XCTAssertTrue(results.isEmpty)
-//    }
+    func testRemove_deletesItemFromModelContext() throws {
+        
+        // Given
+        let container = try ModelContainer(for: CartItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+        let context = ModelContext(container)
+        let item = CartItem(id: 1, title: "Test", price: 10.0, description: "", category: "", imageURL: "", ratingRate: 0, ratingCount: 0)
+        context.insert(item)
+
+        // When
+        sut.remove(item: item, from: context)
+
+        // Then
+        let descriptor = FetchDescriptor<CartItem>(predicate: #Predicate<CartItem> { $0.id == 1 })
+        let results = try context.fetch(descriptor)
+        XCTAssertTrue(results.isEmpty)
+    }
 }

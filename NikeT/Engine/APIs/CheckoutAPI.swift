@@ -21,47 +21,53 @@ class CheckoutAPIImpl: API, CheckoutAPI {
         }
     }
 
-    private var checkoutResponseDelay = 5 // in seconds, for mocking the polling service
-
     func checkout(cartItems: [CartItem]) async throws -> VoidDTO {
         
-        let pollingURL = URL(string: "https://httpbin.org/delay/\(checkoutResponseDelay)")!
-        let maxWaitTime: TimeInterval = 7
-        let pollInterval: TimeInterval = 2
-        let startTime = Date()
+        try await Task.sleep(nanoseconds: UInt64(1 * 1_000_000_000))
+        return VoidDTO()
 
-        let successFlag = SuccessFlag()
-
-        Task.detached {
-            do {
-                let (_, response) = try await URLSession.shared.data(from: pollingURL)
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                    await successFlag.setValue(true)
-                }
-            } catch {
-                print("Polling attempt failed: \(error)")
-            }
-        }
-
-        var pollCount = 0
-       
-        while Date().timeIntervalSince(startTime) < maxWaitTime {
-            print("Poll...\(pollCount), interval: \(pollInterval)s")
-            pollCount += 1
-            
-            
-            if await successFlag.value {
-                print("✅ Polling successful!")
-                pollCount = 0
-                if checkoutResponseDelay == 5 {
-                    checkoutResponseDelay = 10
-                }
-                return VoidDTO()
-            }
-            try await Task.sleep(nanoseconds: UInt64(pollInterval * 1_000_000_000))
-        }
-
-        checkoutResponseDelay = 5
-        throw APIError.timeout
+        
+        
+        
+        
+        
+//        let pollingURL = URL(string: "https://httpbin.org/delay/3")!
+//        var maxWaitTime: TimeInterval = 15
+//        let pollInterval: TimeInterval = 1
+//        let startTime = Date()
+//
+//        let successFlag = SuccessFlag()
+//
+//        Task.detached {
+//            do {
+//                let (_, response) = try await URLSession.shared.data(from: pollingURL)
+//                print("Success...")
+//                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+//                    await successFlag.setValue(true)
+//                }
+//            } catch {
+//                print("Polling attempt failed: \(error)")
+//            }
+//        }
+//
+//        var pollCount = 0
+//       
+//        while Date().timeIntervalSince(startTime) < maxWaitTime {
+//            print("Poll...\(pollCount), interval: \(pollInterval)s")
+//            pollCount += 1
+//            
+//            if await successFlag.value {
+//                print("Polling successful!")
+//                pollCount = 0
+//                if maxWaitTime == 15 {
+//                    maxWaitTime = 3
+//                }
+//                return VoidDTO()
+//            }
+//            try await Task.sleep(nanoseconds: UInt64(pollInterval * 1_000_000_000))
+//        }
+//
+//        maxWaitTime = 15
+//        throw APIError.timeout
     }
 }

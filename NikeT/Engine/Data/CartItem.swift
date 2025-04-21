@@ -18,8 +18,9 @@ class CartItem {
     var imageURL: String
     var ratingRate: Double
     var ratingCount: Int
+    var dateAdded: Date
 
-    init(id: Int, title: String, price: Double, description: String, category: String, imageURL: String, ratingRate: Double, ratingCount: Int) {
+    init(id: Int, title: String, price: Double, description: String, category: String, imageURL: String, ratingRate: Double, ratingCount: Int, dateAdded: Date = Date()) {
         self.id = id
         self.title = title
         self.price = price
@@ -28,6 +29,7 @@ class CartItem {
         self.imageURL = imageURL
         self.ratingRate = ratingRate
         self.ratingCount = ratingCount
+        self.dateAdded = dateAdded
     }
 }
 
@@ -43,7 +45,8 @@ extension CartItem {
             category: product.category,
             imageURL: product.imageURL?.absoluteString ?? "",
             ratingRate: product.rating.rate,
-            ratingCount: product.rating.count
+            ratingCount: product.rating.count,
+            dateAdded: Date()
         )
     }
 }

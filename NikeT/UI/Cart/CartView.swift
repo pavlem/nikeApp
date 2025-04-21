@@ -27,11 +27,10 @@ struct CartView: View {
         
         VStack(spacing: 0) {
             
-            
             ZStack {
                 
                 List {
-                    ForEach(cartItems) { item in
+                    ForEach(cartItems.sorted(by: { $0.dateAdded > $1.dateAdded })) { item in
                         
                         NavigationLink {
                             let vm = dependencyManager.makeProductDetailsViewModel(product: Product(cartItem: item))

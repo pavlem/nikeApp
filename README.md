@@ -5,19 +5,13 @@
 - Install on a real device, simulator will have issues, it will work only for the first time, but later it will not. The reason is that the web site is failing to establish a connection or complete a handshake, especially after the first run. It's specific to the Simulator and often occurs with servers using Cloudflare or HTTP/3 (like fakestoreapi.com does).
 
 ## Features
-- Portrait and Landscape mode supported 
-- Dark light mode supported
-- Checkout will work every second time. If it fails, an alert error will be shown
-- There are two main screens (tabs), PRODUCTS and CART. Products will download data from the fakestore while Cart will show products added to cart ordered by date (last will be the firs in the list) 
-- On product tap, product details is opened where we can add it or remove it from the cart.
-- In cart tab, on cart item tap, product will again be opened and we can also add or remove it from the cart list. 
-- In cart list there is also swipe to delete feature
-- In cart list we can also see number of items and total price
-- Tapping on the checkout button we have one final alert confirmation and then a loading screen where we call again a fake api "https://httpbin.org/delay/3” which will return an answer after 3 second. This site is FLAKY and in case of an error try again 
-
-- Portrait and Landscape mode supported 
-- Dark light mode supported
-- Checkout will work every second time. If it fails, an alert error will be shown
+- **Universal UI**: Supports portrait & landscape, light & dark modes.
+- **Two Tabs**: 
+  - **PRODUCTS**: Fetches data from fakestoreapi.com.
+  - **CART**: Displays items (newest first), swipe‑to‑delete, shows item count & total price.
+- **Product Detail**: Tap Product to view details, add/remove to cart. It can also be accessed from the Cart Item tap. 
+- **Checkout**: Flaky API (`https://httpbin.org/delay/3`). Works most of the timet and on failure, shows an error alert and allows retry.
+- **Swipe to delete**: In cart list there is also swipe to delete feature for every item and we can see number of items and total price before checkout. 
 
 
 ## Architecture:
@@ -36,7 +30,7 @@ Each View in the application has the structure outlined below (black arrows indi
 
 #### **ViewModel**
 
-Calls UseCase methods to do work and updates Views. Events are communicated asynchronously with the View using Swift concurency. A ViewModel can utilise the functionality provided by a number of UseCases to achieve its goals.
+Calls UseCase methods to do work and updates Views. Events are communicated asynchronously with the View using Swift Concurrency. A ViewModel can utilise the functionality provided by a number of UseCases to achieve its goals.
 
 
 #### **UseCase**
@@ -56,20 +50,21 @@ APIs handle DTO objects which are defined by the web APIs. These typically use n
 
 Data is passed from API -> UseCase -> ViewModel via do try catch. Errors are consolidated at each level and passed along the chain. At the ViewModel level these errors are converted to alerts and the View handles the rendering of that.
 
-For example, an API error (E.g. ClientAPIError) is converted by the UseCase into a specific UseCaseError (ClientUseCaseError.invalidClientIdError). This reduces the error set to a known set for this particular UseCase. The UseCase passes this UseCaseError to the ViewModel which then handles and displays to the user depending on the Error and the UX of the screen.
+For example, an API error (E.g. ProductAPIError) is converted by the UseCase into a specific UseCaseError (ProductUseCaseError.invalidProductIdError). This reduces the error set to a known set for this particular UseCase. The UseCase passes this UseCaseError to the ViewModel which then handles and displays to the user depending on the Error and the UX of the screen.
 
 ## Test Strategy
 
-* Unit testing
-    * Unit tests have been written as a show case what can be done
+Several test classes have been made and in general the strategy is:
 
-* Target code coverage would be:
+* **Unit testing**: Unit tests have been written as a show case what can be done
+
+* Target code coverage would be implemented in:
     * Use cases
     * View models
     * Data models
 
-* Target code coverage exclusions:
-    * UI, Manager and Utility components where OS level code and API calls are integrated such as:
-        * Factories
-        * Comms
-* UI testing - XCUITest can be used with Snapshot testing framework. In this case I did not implement them 
+* Target code coverage exclusions would be in :
+    UI, Manager and Utility components where OS level code and API calls are integrated such as:
+    * Factories
+    * Comms
+* **UI testing**: XCUITest can be used for flows and Snapshot testing framework for Images. In this case I did not implement them due to the lack of time. 

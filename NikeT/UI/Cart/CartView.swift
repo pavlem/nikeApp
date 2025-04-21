@@ -53,17 +53,27 @@ struct CartView: View {
                 }
             }
             
-            CheckoutButton(
-                title: Constants.checkOutText,
-                isDisabled: cartItems.isEmpty,
-                action: {
-                    Task {
-                        await viewModel.checkout(cartItems: cartItems, context: modelContext)
-
-//                        await viewModel.checkout(cartItems: cartItems)
-                    }
+            HStack {
+                
+                VStack(alignment: .leading) {
+                    
+                    Text(viewModel.getTotalNumberOfItemsText(cartItems: cartItems))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    
+                    Text(viewModel.getTotalValueOfItemsText(cartItems: cartItems))
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
                 }
-            )
+
+                CheckoutButton(
+                    title: Constants.checkOutText,
+                    isDisabled: cartItems.isEmpty,
+                    action: {
+                        viewModel.checkoutAlert()
+                    }
+                )
+            }
             .padding()
         }
         .onReceive(viewModel.$isLoading) {
@@ -92,6 +102,18 @@ struct CartView: View {
                     }
                 )
 
+            case .checkoutConfirmation:
+                Alert(
+                    title: Text(Constants.checkoutTitleText),
+                    message: Text(Constants.checkoutInfoText),
+                    primaryButton: .destructive(Text(Constants.okText)) {
+                        Task {
+                            await viewModel.checkout(cartItems: cartItems, context: modelContext)
+                        }
+                    },
+                    secondaryButton: .cancel()
+                )
+
             }
         }
     }
@@ -116,7 +138,10 @@ extension CartView {
         
         static var checkoutSuccessTitle: LocalizedStringKey { "Success" }
         static var checkoutSuccessMsg: LocalizedStringKey { "All the items have been checked out!" }
-        
         static var emptyCartTitle: LocalizedStringKey { "Please add some items from the product catalog" }
+        
+        static var checkoutTitleText: LocalizedStringKey { "Checkout" }
+        static var checkoutInfoText: LocalizedStringKey { "You are about to checkout your cart, are you sure?" }
+
     }
 }

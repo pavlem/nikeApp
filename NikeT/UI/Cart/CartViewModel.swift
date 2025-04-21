@@ -10,6 +10,7 @@ import SwiftData
 
 enum CheckoutAlert: Identifiable {
     case checkoutSuccess
+    case checkoutConfirmation
     case error(String) // Includes an error message
     
     var id: Int {
@@ -18,6 +19,8 @@ enum CheckoutAlert: Identifiable {
             return 1
         case .error:
             return 2
+        case .checkoutConfirmation:
+            return 3
         }
     }
 }
@@ -41,42 +44,63 @@ enum CheckoutError: LocalizedError {
 
 protocol CartViewModel: Observable {
     func remove(item: CartItem, from context: ModelContext)
-    func checkout(cartItems: [CartItem])
+    func checkout(cartItems: [CartItem], context: ModelContext) async
+    func getTotalNumberOfItemsText(cartItems: [CartItem]) -> String
+    func getTotalValueOfItemsText(cartItems: [CartItem]) -> String
 }
 
-class CartViewModelImpl: ObservableObject {
+class CartViewModelImpl: CartViewModel, ObservableObject {
     
     @Published var isLoading = false
     @Published var alert: CheckoutAlert?
-
+    
     private let useCase: CartUseCase
     
     init(useCase: CartUseCase) {
         self.useCase = useCase
     }
     
+    func getTotalNumberOfItemsText(cartItems: [CartItem]) -> String {
+        return "Items in cart" + ": " + "\(cartItems.count)"
+    }
+    
     func remove(item: CartItem, from context: ModelContext) {
         useCase.remove(item: item, from: context)
     }
     
+    func getTotalValueOfItemsText(cartItems: [CartItem]) -> String {
+        String(format: "Total: $%.2f", cartItems.reduce(0) { $0 + $1.price })
+    }
+    
+    func checkoutAlert() {
+        alert = .checkoutConfirmation
+    }
+    
     @MainActor
     func checkout(cartItems: [CartItem], context: ModelContext) async {
+        
         isLoading = true
         
-        defer {
-            isLoading = false
-        }
-        
         do {
+            
+            // Network call (simulated long polling)
             try await useCase.checkout(cartItems: cartItems)
+           
+            // Delete all items in Cart from DB
             for item in cartItems {
                 context.delete(item)
             }
-            self.alert = .checkoutSuccess
+            
+            // Inform the user via Alert
+            isLoading = false
+
+            alert = .checkoutSuccess
 
         } catch {
+            isLoading = false
+
             let err = CheckoutError.checkoutFailed
-            self.alert = .error(err.errorDescription ?? "-")
+            alert = .error(err.errorDescription ?? "-")
         }
     }
 }

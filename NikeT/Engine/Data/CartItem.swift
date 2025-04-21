@@ -9,7 +9,7 @@ import SwiftData
 import Foundation
 
 @Model
-final class CartItem {
+class CartItem {
     var id: Int
     var title: String
     var price: Double
